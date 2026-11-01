@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>gnerti Hub</AssemblyName>
+    <RootNamespace>GnertiHub</RootNamespace>
+    <ApplicationIcon>gnerti.ico</ApplicationIcon>
+    <Product>gnerti Hub</Product>
+    <Company>gnerti</Company>
+    <Copyright>© 2026 gnerti</Copyright>
+    <Version>2.2.0</Version>
+    <ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+  </PropertyGroup>
+
+</Project>
