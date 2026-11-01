@@ -90,7 +90,8 @@ section.first{border-top:0}
 .feat{list-style:none;padding:0;margin:24px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:14px 24px}
 .feat li{display:flex;gap:10px;font-size:15px;min-width:0}
 .feat li::before{content:"";flex:none;width:6px;height:6px;margin-top:10px;background:var(--signal)}
-.ver{margin-top:26px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.ver{margin-top:12px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.dl{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
 
 .app{background:var(--app-bg);border-radius:14px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(19,21,43,.55);border:1px solid #23264a;color:var(--app-fg);font-family:"Segoe UI",var(--body);font-size:12px}
 .app-bar{display:flex;align-items:center;gap:8px;padding:9px 12px;background:var(--app-side);border-bottom:1px solid #1d2040;color:var(--app-muted)}
@@ -207,7 +208,8 @@ footer{padding-block:36px 48px;display:flex;justify-content:space-between;gap:16
     <a href="#divisions">Направления</a>
     <a href="#roadmap">План</a>
     <a href="#faq">Вопросы</a>
-    <a class="pill-link" href="#join">Связь</a>
+    <a href="#join">Связь</a>
+    <a class="pill-link" href="https://github.com/ilay5475/gnerti/releases/download/hub/gnerti-Hub.exe">Скачать</a>
   </div>
 </nav>
 
@@ -217,8 +219,8 @@ footer{padding-block:36px 48px;display:flex;justify-content:space-between;gap:16
     <h1 class="word">gnerti<span>.</span></h1>
     <p class="lead">Мы делаем игры, программы, гаджеты и искусственный интеллект. Всё своё, от идеи до кода.</p>
     <div class="cta">
-      <a class="btn primary" href="#hub">Наш первый продукт</a>
-      <a class="btn" href="#divisions">Направления</a>
+      <a class="btn primary" href="https://github.com/ilay5475/gnerti/releases/download/hub/gnerti-Hub.exe">⬇ Скачать gnerti Hub</a>
+      <a class="btn" href="#hub">Наш первый продукт</a>
     </div>
   </div>
   <svg class="mark" viewBox="0 0 400 400" role="img" aria-label="Логотип gnerti">
@@ -256,7 +258,11 @@ footer{padding-block:36px 48px;display:flex;justify-content:space-between;gap:16
         <li>Вход с любого компьютера</li>
         <li>Защита от подбора пароля</li>
       </ul>
-      <p class="ver">Windows 10 / 11 · C# · .NET 8 · облако gnerti</p>
+      <div class="dl">
+        <a class="btn primary" href="https://github.com/ilay5475/gnerti/releases/download/hub/gnerti-Hub.exe">⬇ Скачать для Windows</a>
+        <a class="btn" href="https://github.com/ilay5475/gnerti/releases/tag/hub">Все версии</a>
+      </div>
+      <p class="ver">gnerti-Hub.exe · Windows 10 / 11 · устанавливать не нужно</p>
     </div>
 
     <div class="app" role="img" aria-label="Как выглядит окно gnerti Hub">
@@ -374,7 +380,7 @@ footer{padding-block:36px 48px;display:flex;justify-content:space-between;gap:16
     </details>
     <details>
       <summary>Как установить gnerti Hub?</summary>
-      <p>gnerti Hub работает на Windows 10 и 11. Программа идёт одним файлом «gnerti Hub.exe»: его достаточно запустить, устанавливать ничего не нужно.</p>
+      <p>gnerti Hub работает на Windows 10 и 11. Нажми «Скачать gnerti Hub», получишь один файл gnerti-Hub.exe. Его достаточно запустить, устанавливать ничего не нужно. Если Windows покажет предупреждение, нажми «Подробнее» → «Выполнить в любом случае».</p>
     </details>
     <details>
       <summary>Кто может добавлять игры в Hub?</summary>
