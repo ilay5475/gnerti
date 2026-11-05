@@ -1,0 +1,2498 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GNERTI HUB | Marketplace</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000'/%3E%3Crect x='3' y='3' width='58' height='58' rx='12' fill='none' stroke='%23ff0033' stroke-width='5'/%3E%3Ctext x='32' y='45' font-family='Arial' font-weight='900' font-size='36' text-anchor='middle' fill='%23ff0033'%3EG%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#ff0033">
+<script src="https://pay.monobank.ua/mono-pay-button/v1/mono-pay-button.js" async></script>
+<script>try{const d=document.documentElement,u=JSON.parse(localStorage.getItem('gn2_ui')||'{}'),t=localStorage.getItem('gn2_theme');
+d.dataset.theme=u.theme||t||'dark';d.dataset.skin=u.skin||'gnerti';d.dataset.compact=u.compact?'1':'0';d.dataset.motion=u.motion===false?'0':'1';}catch(e){}</script>
+<style>
+:root{
+  --bg:#070709;--card:rgba(18,18,22,.92);--red:#ff0033;--red2:#99001f;--glow:rgba(255,0,51,.4);
+  --text:#f0f0f5;--muted:#8a8a9e;--border:rgba(255,0,51,.3);--ok:#22d36b;--warn:#ffb020;--metal:#1a1a22;
+  --panel:#0d0d11;--panel2:#16161c;--input:#0a0a0d;--modal:#121216;--metal2:#252530;--head:rgba(10,10,12,.95);--chip:rgba(10,10,12,.85);--heroBg:rgba(18,18,22,.5);--title:#fff;
+}
+:root[data-skin="steam"]{
+  --bg:#1b2838;--card:#16202d;--red:#66c0f4;--red2:#2a75bb;--glow:rgba(102,192,244,.3);--border:rgba(102,192,244,.22);
+  --text:#c6d4df;--muted:#8f98a0;--title:#ffffff;--metal:#2a3f5a;--metal2:#36506f;--panel:#1e2c3d;--panel2:#24374d;--input:#101822;--modal:#1b2838;
+  --head:rgba(23,26,33,.97);--chip:rgba(23,26,33,.9);--heroBg:rgba(23,26,33,.55)}
+:root[data-skin="steam"] body{background-image:linear-gradient(180deg,#171a21 0,#1b2838 380px)}
+:root[data-skin="steam"] .btn:not(.btn-sec){background:linear-gradient(90deg,#47bfff,#1a44c2);box-shadow:none}
+:root[data-skin="steam"] .btn-buy{background:linear-gradient(90deg,#75b022,#588a1b)!important;color:#d2efa9}
+:root[data-skin="steam"] .logo-box{background:linear-gradient(135deg,#171a21,#2a75bb);border-color:#66c0f4}
+:root[data-skin="cyber"]{
+  --bg:#07040f;--card:rgba(20,10,36,.92);--red:#b84dff;--red2:#4b1ea8;--glow:rgba(184,77,255,.45);--border:rgba(184,77,255,.32);
+  --text:#ece6ff;--muted:#9c8fbf;--metal:#1d1233;--metal2:#2b1b4d;--panel:#120a22;--panel2:#1d1036;--input:#0b0617;--modal:#120a22;
+  --head:rgba(9,5,18,.95);--chip:rgba(9,5,18,.9);--heroBg:rgba(20,10,36,.5);--ok:#2ef2c9}
+:root[data-skin="cyber"] body{background-image:radial-gradient(circle at 20% 0%,rgba(184,77,255,.25),transparent 55%),radial-gradient(circle at 90% 10%,rgba(46,242,201,.15),transparent 45%)}
+:root[data-skin="cyber"] .btn:not(.btn-sec){background:linear-gradient(135deg,#b84dff,#2ef2c9);color:#fff}
+:root[data-skin="gold"]{
+  --bg:#0a0805;--card:rgba(24,19,10,.94);--red:#f2b01e;--red2:#9a6a05;--glow:rgba(242,176,30,.35);--border:rgba(242,176,30,.3);
+  --text:#f5ecd8;--muted:#a8997a;--metal:#241c0e;--metal2:#33280f;--panel:#15110a;--panel2:#221a0c;--input:#0e0b06;--modal:#15110a;
+  --head:rgba(10,8,5,.95);--chip:rgba(10,8,5,.9);--heroBg:rgba(24,19,10,.5)}
+:root[data-skin="gold"] body{background-image:radial-gradient(circle at 50% 0%,rgba(242,176,30,.16),transparent 65%)}
+:root[data-skin="gold"] .btn:not(.btn-sec){color:#1a1200}
+:root[data-compact="1"] .grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+:root[data-compact="1"] .card-img{height:110px;font-size:40px}
+:root[data-compact="1"] .card-body{padding:12px}
+:root[data-compact="1"] .card-desc{display:none}
+:root[data-compact="1"] .card-title{font-size:15px}
+:root[data-motion="0"] *{animation:none!important;transition:none!important}
+.skins{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.skin{border:2px solid var(--border);border-radius:10px;padding:8px;cursor:pointer;text-align:center;font-weight:700;font-size:13px;background:var(--panel)}
+.skin.on{border-color:var(--red);box-shadow:0 0 12px var(--glow)}
+.skin i{display:block;height:46px;border-radius:6px;margin-bottom:6px}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+:root[data-theme="light"]{
+  --bg:#f3f3f7;--card:#ffffff;--text:#16161d;--muted:#6b6b7e;--metal:#ececf2;
+  --panel:#f4f4f8;--panel2:#ffecef;--input:#ffffff;--modal:#ffffff;--metal2:#e2e2ea;--head:rgba(255,255,255,.95);--chip:rgba(255,255,255,.92);--heroBg:rgba(255,255,255,.7);--title:#111;
+}
+:root[data-theme="light"] body{background-image:radial-gradient(circle at 50% 0%,color-mix(in srgb,var(--red) 8%,transparent),transparent 70%)!important}
+:root[data-theme="light"] .modal-bg{background:rgba(20,20,30,.45)}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+@keyframes slide{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--red) 60%,transparent)}50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--red) 0%,transparent)}}
+.grid .card,.post,.panel{animation:up .35s ease both}
+.modal{animation:pop .2s ease both}
+#toast .alert{animation:slide .25s ease both}
+.bell i{animation:pulse 1.6s infinite}
+.card-img{transition:transform .4s}.card:hover .card-img{transform:scale(1.04)}
+.card{overflow:hidden}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-thumb{background:var(--metal2);border-radius:6px}::-webkit-scrollbar-track{background:transparent}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Tahoma,Arial,sans-serif}
+body{background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;
+  background-image:radial-gradient(circle at 50% 0%,color-mix(in srgb,var(--red) 18%,transparent),transparent 70%);background-attachment:fixed}
+header{background:var(--head);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+.header-in{padding:12px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;max-width:1280px;margin:0 auto}
+#banner{background:color-mix(in srgb,var(--red) 20%,transparent);border-top:1px solid var(--red);text-align:center;padding:8px;font-size:13px;font-weight:600}
+.logo-area{display:flex;align-items:center;gap:12px;cursor:pointer}
+.logo-box{width:42px;height:42px;background:linear-gradient(135deg,#000,var(--red));border:2px solid var(--red);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;color:#fff;box-shadow:0 0 15px var(--glow)}
+.brand{font-size:20px;font-weight:800;letter-spacing:2px}.brand span{color:var(--red)}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+.nav-link{color:var(--muted);font-weight:600;font-size:14px;cursor:pointer;padding:6px 12px;border-radius:6px;border:1px solid transparent;transition:.2s}
+.nav-link:hover,.nav-link.active{color:var(--title);background:color-mix(in srgb,var(--red) 10%,transparent);border-color:var(--border)}
+#userMenu{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.wallet{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-weight:800;font-size:14px;cursor:pointer}
+.wallet b{color:var(--ok)}
+.btn{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border:none;padding:10px 18px;border-radius:6px;font-weight:700;
+  cursor:pointer;transition:.2s;text-transform:uppercase;font-size:12px;letter-spacing:1px;box-shadow:0 0 10px var(--glow)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 20px var(--glow)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-sec{background:var(--metal);border:1px solid var(--border);box-shadow:none;color:var(--title)}
+.btn-sec:hover{background:var(--metal2)}
+.btn-sm{padding:6px 10px;font-size:11px}
+.container{max-width:1200px;margin:24px auto;padding:0 16px;flex:1;width:100%}
+.narrow{max-width:720px;margin:0 auto}
+h2{margin-bottom:6px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.toolbar .form-control{flex:1;min-width:150px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-top:18px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;position:relative;transition:.3s}
+.card:hover{border-color:var(--red);box-shadow:0 0 20px color-mix(in srgb,var(--red) 25%,transparent)}
+.grid .card:hover{transform:translateY(-3px)}
+.card-img{height:150px;background:var(--panel) center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:54px;border-bottom:1px solid var(--border);cursor:pointer}
+.card-body{padding:16px;display:flex;flex-direction:column;flex:1}
+.badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:800;background:var(--chip);color:var(--red);padding:4px 8px;border-radius:4px;border:1px solid var(--border);text-transform:uppercase}
+.role{font-size:10px;font-weight:800;padding:2px 6px;border-radius:4px;text-transform:uppercase;margin-left:4px}
+.role-admin{background:color-mix(in srgb,var(--red) 25%,transparent);color:#ff3355;border:1px solid var(--red)}
+.role-dev{background:rgba(34,211,107,.15);color:var(--ok);border:1px solid var(--ok)}
+.card-title{font-size:17px;font-weight:700;margin-bottom:6px;cursor:pointer}
+.card-desc{font-size:13px;color:var(--muted);line-height:1.4;flex:1;margin-bottom:10px}
+.meta{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;margin-bottom:10px;gap:8px}
+.stars{color:#ffd23f}
+.card-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.06);padding-top:12px}
+.price{font-size:20px;font-weight:800;color:var(--red)}
+.price.free{color:var(--ok)}
+.sold-out{color:var(--muted);font-weight:700;font-size:12px}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;margin-top:18px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:12px}
+.stat{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px}
+.stat small{color:var(--muted);font-size:11px;text-transform:uppercase;font-weight:700}
+.stat div{font-size:24px;font-weight:800;margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+th,td{padding:8px;border-bottom:1px solid rgba(255,255,255,.06);text-align:left;vertical-align:middle}
+th{color:var(--muted);font-size:11px;text-transform:uppercase}
+.table-wrap{overflow-x:auto}
+.status{font-size:11px;font-weight:800;padding:3px 8px;border-radius:4px;display:inline-block}
+.st-paid{background:rgba(255,176,32,.15);color:var(--warn)}
+.st-sent{background:rgba(34,211,107,.15);color:var(--ok)}
+.st-ref{background:color-mix(in srgb,var(--red) 15%,transparent);color:#ff6b6b}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:none;justify-content:center;align-items:center;z-index:1000;padding:16px}
+.modal{background:var(--modal);border:1px solid var(--red);width:100%;max-width:480px;max-height:92vh;overflow-y:auto;border-radius:14px;padding:24px;box-shadow:0 0 30px var(--glow);position:relative}
+.modal.wide{max-width:620px}
+.close-btn{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer}
+.close-btn:hover{color:var(--title)}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase}
+.form-control{width:100%;background:var(--input);border:1px solid var(--border);color:var(--title);padding:10px 12px;border-radius:6px;font-size:14px;outline:none}
+.form-control:focus{border-color:var(--red);box-shadow:0 0 10px var(--glow)}
+.row{display:flex;gap:10px}.row>*{flex:1}
+.summary{background:var(--input);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:14px;font-size:14px}
+.summary div{display:flex;justify-content:space-between;padding:4px 0}
+.summary .total{border-top:1px solid var(--border);margin-top:6px;padding-top:8px;font-weight:800;font-size:16px}
+.neg{color:#ff6b6b}.pos{color:var(--ok)}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.hidden{display:none!important}
+.alert{padding:10px 14px;border-radius:6px;font-size:13px;margin-bottom:10px}
+.alert-error{background:rgba(255,0,0,.15);border:1px solid #c00;color:#ff6b6b}
+.alert-success{background:rgba(0,200,80,.15);border:1px solid #1a7f45;color:#6bff9b}
+#toast{position:fixed;bottom:20px;right:20px;z-index:2000;max-width:340px}
+.receipt{white-space:pre-wrap;font-family:Consolas,monospace;font-size:13px;background:var(--input);border:1px dashed var(--border);padding:14px;border-radius:8px;margin:12px 0;word-break:break-all}
+.empty{color:var(--muted);padding:30px;text-align:center}
+.post{padding:16px}
+.post-head{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px}
+.post-head b{color:var(--red)}
+.post img{width:100%;max-height:300px;object-fit:cover;border-radius:8px;margin-top:10px}
+.post-actions{display:flex;gap:8px;margin-top:12px;align-items:center;flex-wrap:wrap}
+.like{background:var(--panel);border:1px solid var(--border);color:var(--title);border-radius:20px;padding:5px 12px;cursor:pointer;font-size:13px}
+.like.on{background:color-mix(in srgb,var(--red) 20%,transparent);border-color:var(--red)}
+.comment{background:var(--panel);border-radius:6px;padding:8px 10px;font-size:13px;margin-top:6px}
+.comment b{color:var(--title);margin-right:6px}
+.msg{padding:8px 12px;border-radius:8px;font-size:13px;margin-top:6px;max-width:85%}
+.msg-user{background:var(--metal);margin-right:auto}
+.msg-admin{background:rgba(34,211,107,.12);border:1px solid rgba(34,211,107,.4);margin-left:auto}
+.msg small{display:block;color:var(--muted);font-size:10px;margin-bottom:2px}
+.chip{display:inline-flex;gap:6px;align-items:center;background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:5px 10px;font-size:12px;margin:4px 4px 0 0}
+.chip span.x{color:#ff6b6b;cursor:pointer;font-weight:800}
+.bell{position:relative;background:var(--panel);border:1px solid var(--border);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px}
+.bell i{position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;font-style:normal;font-size:10px;font-weight:800;border-radius:10px;padding:1px 5px;min-width:16px;text-align:center}
+.fav{position:absolute;top:10px;left:10px;background:var(--chip);border:1px solid var(--border);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;z-index:2;color:#777}
+.fav.on{color:var(--red);border-color:var(--red)}
+.notif{padding:10px 12px;border-radius:8px;background:var(--panel);margin-top:6px;font-size:13px;cursor:pointer;border-left:3px solid transparent}
+.notif.new{border-left-color:var(--red);background:var(--panel2)}
+.notif small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.hero{border-bottom:1px solid rgba(255,255,255,.06);background:var(--heroBg)}
+.hero-in{max-width:1200px;margin:0 auto;padding:22px 16px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.hero h1{font-size:24px;font-weight:900;letter-spacing:1px}.hero h1 span{color:var(--red)}
+.hero-stats{display:flex;gap:22px;flex-wrap:wrap}
+.hero-stats div{text-align:center}.hero-stats b{display:block;font-size:20px}.hero-stats small{color:var(--muted);font-size:11px;text-transform:uppercase;font-weight:700}
+footer{border-top:1px solid var(--border);padding:22px 16px;text-align:center;color:var(--muted);font-size:12px;margin-top:30px}
+footer b{color:var(--red)}
+.link{color:var(--red);cursor:pointer;font-weight:700}.link:hover{text-decoration:underline}
+.mini{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;margin-top:8px}
+.mini .card{min-width:150px;max-width:150px;cursor:pointer}
+.mini .card-img{height:80px;font-size:32px}
+.mini .card-body{padding:8px;font-size:12px}
+.old{text-decoration:line-through;color:var(--muted);font-size:13px;font-weight:600;margin-right:6px}
+.sale{position:absolute;top:46px;left:10px;background:var(--red);color:#fff;font-size:11px;font-weight:900;padding:3px 7px;border-radius:4px;z-index:2}
+.cart-row{display:flex;align-items:center;gap:10px;padding:10px;background:var(--panel);border-radius:8px;margin-top:6px}
+.cart-row .t{flex:1;font-size:13px}.cart-row .t small{display:block;color:var(--muted)}
+.qty{display:flex;align-items:center;gap:4px}.qty button{width:26px;height:26px;border-radius:6px;border:1px solid var(--border);background:var(--metal);color:var(--title);cursor:pointer;font-weight:800}
+.qty span{min-width:22px;text-align:center;font-weight:700}
+.btn-cart{padding:10px 12px}
+.role-lvl{background:rgba(255,176,32,.15);color:var(--warn);border:1px solid rgba(255,176,32,.5)}
+.auc{background:linear-gradient(135deg,rgba(255,176,32,.12),transparent);border:1px solid rgba(255,176,32,.45);border-radius:8px;padding:8px 10px;margin-bottom:10px;font-size:12px}
+.auc b{color:var(--warn);font-size:16px}
+.xpbar{height:8px;background:var(--metal);border-radius:6px;overflow:hidden;margin-top:6px}.xpbar div{height:100%;background:linear-gradient(90deg,var(--warn),var(--red))}
+.cmp{position:absolute;top:48px;left:10px;background:var(--chip);border:1px solid var(--border);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;z-index:2}
+.cmp.on{background:var(--red);border-color:var(--red)}
+.card .sale{top:86px}
+.tag{font-size:10px;font-weight:900;padding:3px 7px;border-radius:4px;margin-right:4px}
+.tag-new{background:rgba(34,211,107,.15);color:var(--ok);border:1px solid var(--ok)}
+.tag-hit{background:rgba(255,176,32,.15);color:var(--warn);border:1px solid var(--warn)}
+.low{color:#ff6b6b;font-weight:700}
+#cmpBar{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--modal);border:1px solid var(--red);border-radius:30px;padding:8px 10px 8px 18px;display:flex;gap:10px;align-items:center;z-index:900;box-shadow:0 0 20px var(--glow);font-weight:700;font-size:13px}
+.top-sellers{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
+.ts{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--border);border-radius:30px;padding:6px 14px 6px 6px;cursor:pointer;white-space:nowrap;font-size:13px}
+.ts .av{width:28px;height:28px;border-radius:50%;background:color-mix(in srgb,var(--red) 20%,transparent);border:1px solid var(--red);display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--red)}
+.pinned{border-color:var(--warn)!important}
+kbd{background:var(--metal);border:1px solid var(--metal2);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:12px}
+.steam-head{display:flex;justify-content:space-between;align-items:flex-end;padding:14px 16px;margin:-4px 0 14px;border-radius:10px;background:linear-gradient(135deg,color-mix(in srgb,var(--red) 18%,transparent),color-mix(in srgb,var(--red) 3%,transparent));border:1px solid var(--border)}
+.steam-bal{font-size:30px;font-weight:900;color:var(--ok)}
+.pack{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 14px;margin-bottom:8px;border-radius:8px;background:var(--panel);border:1px solid var(--border);transition:.2s}
+.pack:hover{border-color:var(--red);box-shadow:0 0 12px var(--glow)}
+.pack b{font-size:16px}.pack small{display:block;color:var(--muted);font-size:12px}
+.pack .amt{font-size:20px;font-weight:900;color:var(--title);min-width:110px}
+.method{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--panel);margin-bottom:6px;cursor:pointer}
+.method.on{border-color:var(--red);box-shadow:0 0 10px var(--glow)}
+.method small{display:block;color:var(--muted);font-size:12px}
+.paycode{font-family:Consolas,monospace;font-size:22px;font-weight:900;letter-spacing:2px;color:var(--red);text-align:center;padding:10px;border:2px dashed var(--red);border-radius:8px;margin:8px 0;cursor:pointer}
+.chipbtn{display:inline-block;background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:12px;margin:3px 4px 0 0;cursor:pointer}
+.crumbs{font-size:12px;color:var(--muted);margin-bottom:6px}
+.wlayout{display:grid;grid-template-columns:1fr 300px;gap:22px;align-items:start}
+@media(max-width:860px){.wlayout{grid-template-columns:1fr}.wlayout aside{order:-1}}
+.wside{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
+.wmenu{display:flex;flex-direction:column;margin-top:12px;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.wmenu button{background:none;border:none;border-left:3px solid transparent;color:var(--text);text-align:left;padding:12px 14px;font-size:14px;cursor:pointer;font-weight:600}
+.wmenu button:hover{background:var(--panel)}
+.wmenu button.on{border-left-color:var(--red);background:var(--panel);color:var(--title)}
+.wh{font-size:18px;margin-bottom:12px}
+.wsteps{display:flex;gap:4px;margin-bottom:16px}
+.wsteps div{flex:1;text-align:center;font-size:11px;font-weight:800;text-transform:uppercase;padding:8px 4px;background:var(--panel);color:var(--muted);border-radius:4px;letter-spacing:.5px}
+.wsteps div.done{background:color-mix(in srgb,var(--red) 25%,transparent);color:var(--title)}
+.wsteps div.cur{background:var(--red);color:#fff}
+.wnav-btns{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:13px;margin-top:14px;cursor:pointer;color:var(--muted)}
+.agree input{margin-top:3px;width:16px;height:16px;accent-color:var(--red)}
+.btn-buy{background:linear-gradient(135deg,#6fbf2a,#3f8a17);box-shadow:0 0 10px rgba(111,191,42,.35)}
+.btn-buy:hover{box-shadow:0 0 18px rgba(111,191,42,.6)}
+.review-table td{padding:10px 8px}.review-table td:last-child{text-align:right;font-weight:700}
+.done-box{text-align:center;padding:24px 10px}
+.done-box .big{font-size:54px}
+.review{background:var(--panel);border-radius:6px;padding:8px 10px;margin-top:6px;font-size:13px}
+.star-pick span{font-size:24px;cursor:pointer;color:#475569}
+.star-pick span.on{color:#ffd23f}
+@media(max-width:600px){
+  header{position:static}.header-in{padding:10px 16px}.brand{font-size:16px}
+  .hero h1{font-size:19px}.toolbar select.form-control{max-width:none!important}
+  .modal{padding:18px}#toast{left:16px;right:16px;max-width:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-in">
+    <div class="logo-area" onclick="showTab('market')">
+      <div class="logo-box">G</div>
+      <div class="brand">GNERTI <span>HUB</span></div>
+    </div>
+    <nav>
+      <a class="nav-link active" data-tab="market" onclick="showTab('market')">Маркетплейс</a>
+      <a class="nav-link" data-tab="feed" onclick="showTab('feed')">Сообщество</a>
+      <a class="nav-link" data-tab="support" onclick="showTab('support')">Поддержка</a>
+      <a class="nav-link" data-tab="cabinet" onclick="showTab('cabinet')">Профиль</a>
+      <a class="nav-link" data-tab="wallet" onclick="openWallet()">Кошелёк</a>
+      <a class="nav-link hidden" id="adminNav" data-tab="admin" onclick="showTab('admin')">Админка</a>
+    </nav>
+    <div id="userMenu"></div>
+  </div>
+  <div id="banner" class="hidden"></div>
+</header>
+
+<div class="hero">
+  <div class="hero-in">
+    <div><h1>GNERTI <span>STORE</span> & COMMUNITY</h1>
+      <p style="color:var(--muted);font-size:13px;margin-top:2px">Покупайте, продавайте и общайтесь — всё в одном месте</p></div>
+    <div class="hero-stats" id="heroStats"></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- МАРКЕТ -->
+  <div id="tab-market">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+      <h2>Витрина товаров</h2>
+      <button class="btn" onclick="openPublish()">+ Продать товар</button>
+    </div>
+    <div class="toolbar">
+      <input class="form-control" id="fSearch" placeholder="Поиск товаров и продавцов...  ( / )" oninput="renderProducts()">
+      <input class="form-control" id="fMin" type="number" min="0" placeholder="Цена от" oninput="renderProducts()" style="max-width:110px;min-width:90px">
+      <input class="form-control" id="fMax" type="number" min="0" placeholder="до" oninput="renderProducts()" style="max-width:110px;min-width:90px">
+      <select class="form-control" id="fCat" onchange="renderProducts()" style="max-width:220px"></select>
+      <select class="form-control" id="fSort" onchange="renderProducts()" style="max-width:200px">
+        <option value="new">Сначала новые</option>
+        <option value="cheap">Сначала дешёвые</option>
+        <option value="exp">Сначала дорогие</option>
+        <option value="pop">Популярные</option>
+        <option value="rate">По рейтингу</option>
+        <option value="sale">Сначала скидки</option>
+      </select>
+    </div>
+    <div id="topSellers" style="margin-top:16px"></div>
+    <div id="recentBox"></div>
+    <div class="grid" id="marketGrid"></div>
+  </div>
+
+  <!-- СООБЩЕСТВО -->
+  <div id="tab-feed" class="hidden">
+    <div class="narrow">
+      <h2>Сообщество</h2>
+      <div class="panel">
+        <div class="form-group"><input id="postTitle" class="form-control" maxlength="80" placeholder="Заголовок (необязательно)" oninput="saveDraft()"></div>
+        <div class="form-group"><textarea id="postText" oninput="saveDraft()" class="form-control" rows="3" maxlength="1000" placeholder="Напишите сообщение или новость в сообщество..."></textarea></div>
+        <div class="row" style="align-items:center;flex-wrap:wrap">
+          <input type="file" id="postImg" accept="image/*" class="form-control" style="flex:2">
+          <button class="btn" style="flex:0 0 auto" onclick="submitPost()">Опубликовать</button>
+        </div>
+      </div>
+      <div class="toolbar">
+        <input class="form-control" id="feedSearch" placeholder="Поиск постов и авторов..." oninput="renderFeed()">
+        <select class="form-control" id="feedSort" onchange="renderFeed()" style="max-width:220px">
+          <option value="new">Сначала новые</option>
+          <option value="top">Популярные</option>
+        </select>
+      </div>
+      <div id="feedList"></div>
+    </div>
+  </div>
+
+  <!-- ПОДДЕРЖКА -->
+  <div id="tab-support" class="hidden">
+    <div class="narrow">
+      <h2>Служба поддержки GNERTI</h2>
+      <div class="panel">
+        <p style="color:var(--muted);font-size:13px;margin-bottom:12px">Задайте вопрос или опишите проблему — администрация ответит здесь.</p>
+        <div class="form-group">
+          <label>Тема</label>
+          <select id="ticketTopic" class="form-control">
+            <option>Проблема с покупкой</option><option>Не пришёл товар</option><option>Возврат денег</option>
+            <option>Проблема с аккаунтом</option><option>Жалоба на продавца</option><option>Другое</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Заказ (если есть)</label><select id="ticketOrder" class="form-control"></select></div>
+        <div class="form-group"><label>Сообщение</label><textarea id="ticketText" class="form-control" rows="3" maxlength="1000" placeholder="Подробно опишите вопрос..."></textarea></div>
+        <button class="btn" onclick="sendTicket()">Отправить тикет</button>
+      </div>
+      <h3 style="margin-top:20px">Ваши обращения</h3>
+      <div id="myTickets"></div>
+    </div>
+  </div>
+
+  <!-- ПРОФИЛЬ -->
+  <div id="tab-cabinet" class="hidden">
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+      <div id="avatar" style="width:54px;height:54px;border-radius:50%;background:color-mix(in srgb,var(--red) 20%,transparent);border:2px solid var(--red);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:var(--red)">?</div>
+      <div><h2 id="profName" style="margin:0">Профиль</h2><div id="profSub" style="color:var(--muted);font-size:12px"></div></div>
+    </div>
+    <div class="stats" id="cabStats"></div>
+
+    <div class="panel">
+      <h3>Кошелёк</h3>
+      <p style="color:var(--muted);font-size:13px;margin:6px 0 12px">Покупки списываются с баланса кошелька GNERTI. Продажи зачисляются сюда же (комиссия площадки <span id="feeTxt"></span>).</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+        <button class="btn" onclick="openWallet('top')">＋ Пополнить</button>
+        <button class="btn btn-sec" onclick="openWallet('send')">↗ Перевести</button>
+        <button class="btn btn-sec" onclick="openWallet('out')">⇩ Вывести</button>
+      </div>
+      <div class="row" style="flex-wrap:wrap">
+        <input class="form-control" id="promoInput" placeholder="Промокод на пополнение" style="min-width:180px">
+        <button class="btn btn-sec" style="flex:0 0 auto" onclick="usePromo()">Активировать</button>
+      </div>
+      <div class="row" style="flex-wrap:wrap;margin-top:12px">
+        <input class="form-control" id="profEmail" type="email" placeholder="Email для чеков" style="min-width:180px">
+        <button class="btn btn-sec" style="flex:0 0 auto" onclick="saveEmail()">Сохранить email</button>
+      </div>
+      <div class="row" style="flex-wrap:wrap;margin-top:12px">
+        <input class="form-control" id="pwOld" type="password" placeholder="Старый пароль" style="min-width:140px">
+        <input class="form-control" id="pwNew" type="password" placeholder="Новый пароль (от 6 символов)" style="min-width:140px">
+        <button class="btn btn-sec" style="flex:0 0 auto" onclick="changePass()">Сменить пароль</button>
+      </div>
+    </div>
+
+    <div class="panel"><h3>Мои покупки</h3><div class="table-wrap" id="myOrders"></div></div>
+    <div class="panel"><h3>Мои товары</h3><div class="table-wrap" id="myProducts"></div></div>
+    <div class="panel"><h3>Мои продажи</h3><div class="table-wrap" id="mySales"></div></div>
+    <div class="panel"><h3>История кошелька</h3><div class="table-wrap" id="myTx"></div></div>
+  </div>
+
+  <!-- КОШЕЛЁК (как в Steam) -->
+  <div id="tab-wallet" class="hidden">
+    <div class="crumbs"><span class="link" onclick="showTab('cabinet')">Профиль</span> › Кошелёк GNERTI</div>
+    <h2 style="margin-bottom:14px" id="wTitle">Пополнение кошелька GNERTI</h2>
+    <div class="wlayout">
+      <section>
+        <div id="walletErr" class="alert alert-error hidden"></div>
+
+        <div id="w-top">
+          <div class="wsteps" id="wSteps"></div>
+          <div id="wStep1">
+            <p style="color:var(--muted);font-size:13px;margin-bottom:12px">Средства на кошельке можно тратить на любые товары маркетплейса GNERTI, ставки на аукционах и переводы друзьям.</p>
+            <div id="wPacks"></div>
+            <div class="pack">
+              <div style="flex:1"><b>Своя сумма</b><small>от 10 до 100 000 ₴</small></div>
+              <input type="number" id="wAmount" class="form-control" min="10" max="100000" placeholder="₴" style="width:120px" onkeydown="if(event.key==='Enter')chooseAmount(+this.value)">
+              <button class="btn btn-buy" onclick="chooseAmount(+document.getElementById('wAmount').value)">Пополнить</button>
+            </div>
+          </div>
+          <div id="wStep2" class="hidden">
+            <h3 class="wh">Способ оплаты</h3>
+            <div id="wMethods"></div>
+            <div class="wnav-btns"><button class="btn btn-sec" onclick="wStep(1)">← Назад</button><button class="btn btn-buy" onclick="wContinue()">Продолжить →</button></div>
+          </div>
+          <div id="wStep3" class="hidden">
+            <h3 class="wh">Подтверждение покупки</h3>
+            <div id="wReview"></div>
+            <div id="wPayBox"></div>
+            <label class="agree"><input type="checkbox" id="wAgree"> <span id="wAgreeTxt">Я подтверждаю пополнение кошелька GNERTI. Средства на кошельке не возвращаются на карту, но их можно потратить на сайте.</span></label>
+            <div class="wnav-btns"><button class="btn btn-sec" onclick="wStep(2)">← Назад</button><button class="btn btn-buy" id="wPayBtn" onclick="doTopup()">Купить</button></div>
+          </div>
+          <div id="wStep4" class="hidden"><div id="wDone"></div></div>
+        </div>
+
+        <div id="w-code" class="hidden">
+          <h3 class="wh">Активировать код пополнения</h3>
+          <p style="color:var(--muted);font-size:13px;margin-bottom:10px">Есть код пополнения GNERTI (как карта пополнения Steam) или промокод? Введите его — сумма сразу зачислится.</p>
+          <div class="row"><input id="wCode" class="form-control" placeholder="GNRT-XXXX-XXXX-XXXX" style="flex:3;text-transform:uppercase;letter-spacing:1px;font-family:Consolas,monospace" maxlength="19" onkeydown="if(event.key==='Enter')redeemCode()">
+            <button class="btn btn-buy" style="flex:0 0 auto" onclick="redeemCode()">Активировать</button></div>
+        </div>
+
+        <div id="w-send" class="hidden">
+          <h3 class="wh">Перевод другому игроку</h3>
+          <div class="form-group"><label>Кому (логин игрока)</label>
+            <input id="wTo" class="form-control" list="wUsers" placeholder="Начните вводить ник..." oninput="checkRecipient()" autocomplete="off"><datalist id="wUsers"></datalist>
+            <div id="wToInfo" style="font-size:12px;margin-top:6px;min-height:16px"></div>
+            <div id="wRecent" style="margin-top:4px"></div></div>
+          <div class="form-group"><label>Сумма (₴)</label>
+            <input type="number" id="wSendAmt" class="form-control" min="1" placeholder="100" oninput="checkRecipient()">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><button class="btn btn-sec btn-sm" onclick="wSendAmt.value=50;checkRecipient()">50 ₴</button><button class="btn btn-sec btn-sm" onclick="wSendAmt.value=100;checkRecipient()">100 ₴</button><button class="btn btn-sec btn-sm" onclick="wSendAmt.value=250;checkRecipient()">250 ₴</button><button class="btn btn-sec btn-sm" onclick="wSendAmt.value=500;checkRecipient()">500 ₴</button><button class="btn btn-sec btn-sm" onclick="wSendAmt.value=1000;checkRecipient()">1000 ₴</button></div></div>
+          <div class="form-group"><label>Сообщение</label><input id="wSendNote" class="form-control" maxlength="80" placeholder="За что перевод (необязательно)"></div>
+          <div class="summary" id="wSendSum"></div>
+          <button class="btn btn-buy" style="width:100%" id="wSendBtn" onclick="doTransfer()">Перевести</button>
+        </div>
+
+        <div id="w-out" class="hidden">
+          <h3 class="wh">Вывод средств</h3>
+          <p style="color:var(--muted);font-size:13px;margin-bottom:10px">Заявка на вывод заработанных денег. Сумма сразу замораживается; админ переведёт её вам и подтвердит. Если отклонит — деньги вернутся.</p>
+          <div class="form-group"><label>Сумма (₴)</label><input type="number" id="wOutAmt" class="form-control" min="1" placeholder="500"></div>
+          <div class="form-group"><label>Куда вывести</label><input id="wOutWhere" class="form-control" maxlength="120" placeholder="Например: Monobank-банка (ссылка) или ник для связи"></div>
+          <button class="btn btn-buy" style="width:100%" onclick="doWithdraw()">Отправить заявку на вывод</button>
+        </div>
+
+        <div id="w-hist" class="hidden"><h3 class="wh">История операций</h3><div class="table-wrap" id="wHist"></div></div>
+      </section>
+
+      <aside>
+        <div class="wside">
+          <div style="font-size:12px;color:var(--muted)">Ваш аккаунт</div>
+          <div style="font-weight:800;font-size:16px;color:var(--title)" id="wUser"></div>
+          <div style="font-size:12px;color:var(--muted);margin-top:12px">Средства на кошельке</div>
+          <div class="steam-bal" id="wBal"></div>
+          <div id="wPending" style="font-size:12px;color:var(--warn)"></div>
+        </div>
+        <div class="wmenu">
+          <button id="wt-top" onclick="walletTab('top')">＋ Пополнить кошелёк</button>
+          <button id="wt-code" onclick="walletTab('code')">🎟 Активировать код</button>
+          <button id="wt-send" onclick="walletTab('send')">↗ Перевести игроку</button>
+          <button id="wt-out" onclick="walletTab('out')">⇩ Вывести средства</button>
+          <button id="wt-hist" onclick="walletTab('hist')">🧾 История операций</button>
+        </div>
+        <div id="wReqs" class="wside" style="margin-top:12px"></div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- АДМИНКА -->
+  <div id="tab-admin" class="hidden">
+    <h2 style="color:var(--red)">Панель администратора</h2>
+    <div class="stats" id="adminStats"></div>
+    <div class="panel">
+      <div class="tabs" id="adminTabs"></div>
+      <div id="adminBody"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ВХОД / РЕГИСТРАЦИЯ -->
+<div class="modal-bg" id="authModal">
+  <div class="modal">
+    <button class="close-btn" onclick="closeModal('authModal')">✕</button>
+    <div class="tabs">
+      <button class="btn btn-sm" id="authTabLogin" onclick="setAuthMode('login')">Вход</button>
+      <button class="btn btn-sm btn-sec" id="authTabReg" onclick="setAuthMode('reg')">Регистрация</button>
+    </div>
+    <div id="authErr" class="alert alert-error hidden"></div>
+    <div class="form-group"><label>Логин</label><input id="authLogin" class="form-control" placeholder="Логин" maxlength="24"></div>
+    <div class="form-group"><label>Пароль</label><input type="password" id="authPass" class="form-control" placeholder="Пароль" onkeydown="if(event.key==='Enter')handleAuth()"></div>
+    <div class="form-group hidden" id="authEmailWrap"><label>Email (для чеков)</label><input type="email" id="authEmail" class="form-control" placeholder="you@gmail.com"></div>
+    <button class="btn" style="width:100%" id="authBtn" onclick="handleAuth()">Войти</button>
+    <p style="color:var(--muted);font-size:12px;margin-top:10px" id="authHint"></p>
+  </div>
+</div>
+
+<!-- ПУБЛИКАЦИЯ / РЕДАКТИРОВАНИЕ -->
+<div class="modal-bg" id="pubModal">
+  <div class="modal">
+    <button class="close-btn" onclick="closeModal('pubModal')">✕</button>
+    <h3 style="margin-bottom:14px" id="pubHeader">Разместить товар</h3>
+    <div id="pubErr" class="alert alert-error hidden"></div>
+    <div class="row">
+      <div class="form-group"><label>Категория</label><select id="pubCat" class="form-control"></select></div>
+      <div class="form-group">
+        <label>Как получает покупатель</label>
+        <select id="pubKind" class="form-control" onchange="toggleKind()">
+          <option value="file">Скачивает файл</option>
+          <option value="key">Получает ключ/код</option>
+          <option value="item">Продавец передаёт сам</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group"><label>Способ продажи</label>
+        <select id="pubMode" class="form-control" onchange="toggleMode()"><option value="fixed">Фиксированная цена</option><option value="auction">🔨 Аукцион</option></select></div>
+      <div class="form-group hidden" id="aucHoursBox"><label>Длительность аукциона</label>
+        <select id="pubAucHours" class="form-control"><option value="1">1 час</option><option value="6">6 часов</option><option value="24" selected>1 день</option><option value="72">3 дня</option><option value="168">7 дней</option></select></div>
+    </div>
+    <div class="form-group"><label>Название</label><input id="pubTitle" class="form-control" maxlength="60" placeholder="Например: Меч Тьмы +10"></div>
+    <div class="form-group"><label>Описание</label><textarea id="pubDesc" class="form-control" rows="3" maxlength="600" placeholder="Описание товара"></textarea></div>
+    <div class="row">
+      <div class="form-group"><label id="pubPriceLbl">Цена (₴, 0 = бесплатно)</label><input type="number" id="pubPrice" class="form-control" min="0" placeholder="500"></div>
+      <div class="form-group" id="stockBox"><label>В наличии (шт.)</label><input type="number" id="pubStock" class="form-control" min="0" value="1"></div>
+      <div class="form-group" id="saleBox"><label>Скидка %</label><input type="number" id="pubSale" class="form-control" min="0" max="90" value="0"></div>
+    </div>
+    <div class="form-group">
+      <label>Обложка</label>
+      <input type="file" id="pubImgFile" accept="image/*" class="form-control" style="margin-bottom:6px">
+      <input id="pubImg" class="form-control" placeholder="...или ссылка на картинку https://">
+    </div>
+    <div id="fileField">
+      <div class="form-group">
+        <label>Файл (до 2 МБ) или ссылка на скачивание</label>
+        <input type="file" id="pubFileInput" class="form-control" style="margin-bottom:6px">
+        <input id="pubFile" class="form-control" placeholder="https://site.com/file.zip">
+        <small id="pubFileCur" style="color:var(--muted)"></small>
+      </div>
+    </div>
+    <div class="form-group" id="itemField"><label>Что получит покупатель (инструкция)</label><input id="pubDeliver" class="form-control" maxlength="200" placeholder="Например: предмет будет передан в игре на ваш ник"></div>
+    <button class="btn" style="width:100%" onclick="submitProduct()" id="pubBtn">Опубликовать</button>
+  </div>
+</div>
+
+<!-- ДЕТАЛИ ТОВАРА -->
+<div class="modal-bg" id="detModal">
+  <div class="modal wide">
+    <button class="close-btn" onclick="closeModal('detModal')">✕</button>
+    <div id="detBody"></div>
+  </div>
+</div>
+
+<!-- ПОКУПКА -->
+<div class="modal-bg" id="buyModal">
+  <div class="modal">
+    <button class="close-btn" onclick="closeModal('buyModal')">✕</button>
+    <h3 style="margin-bottom:4px">Оформление покупки</h3>
+    <p id="buyTitle" style="color:var(--muted);font-size:13px;margin-bottom:14px"></p>
+    <div class="row">
+      <div class="form-group"><label>Количество</label><input type="number" id="buyQty" class="form-control" min="1" value="1" oninput="updateBuySummary()"></div>
+      <div class="form-group" style="flex:2"><label>Ваш Email (сюда придёт товар)</label><input type="email" id="buyEmail" class="form-control" placeholder="you@gmail.com"></div>
+    </div>
+    <div class="form-group" id="buyNickWrap"><label>Ник / комментарий для продавца</label><input id="buyNick" class="form-control" maxlength="80" placeholder="Например: ник в игре"></div>
+    <div class="form-group">
+      <label>Промокод на скидку</label>
+      <div class="row"><input id="buyPromo" class="form-control" placeholder="ПРОМОКОД" style="flex:2"><button class="btn btn-sec" style="flex:0 0 auto" onclick="applyDiscount()">Применить</button></div>
+    </div>
+    <div class="summary" id="buySummary"></div>
+    <div id="buyErr" class="alert alert-error hidden"></div>
+    <button class="btn" style="width:100%" id="buyBtn" onclick="processBuy()">Оплатить с кошелька</button>
+  </div>
+</div>
+
+<!-- ИНТЕРФЕЙС -->
+<div class="modal-bg" id="uiModal">
+  <div class="modal">
+    <button class="close-btn" onclick="closeModal('uiModal')">✕</button>
+    <h3 style="margin-bottom:12px">🎨 Интерфейс</h3>
+    <div class="form-group"><label>Стиль</label><div class="skins" id="uiSkins"></div></div>
+    <div class="form-group"><label>Тема</label><div class="seg" id="uiTheme"></div></div>
+    <div class="form-group"><label>Карточки товаров</label><div class="seg" id="uiCompact"></div></div>
+    <div class="form-group"><label>Анимации</label><div class="seg" id="uiMotion"></div></div>
+    <p style="color:var(--muted);font-size:12px">Настройки сохраняются в этом браузере. Быстрая смена темы — клавиша <kbd>T</kbd>.</p>
+  </div>
+</div>
+
+<!-- КОРЗИНА -->
+<div class="modal-bg" id="cartModal">
+  <div class="modal">
+    <button class="close-btn" onclick="closeModal('cartModal')">✕</button>
+    <h3 style="margin-bottom:10px">🛒 Корзина</h3>
+    <div id="cartList"></div>
+    <div id="cartCheckout">
+      <div class="form-group" style="margin-top:12px"><label>Ваш Email (сюда придут товары)</label><input type="email" id="cartEmail" class="form-control" placeholder="you@gmail.com"></div>
+      <div class="form-group"><label>Ник / комментарий для продавцов</label><input id="cartNick" class="form-control" maxlength="80" placeholder="Например: ник в игре"></div>
+      <div class="summary" id="cartSummary"></div>
+      <div id="cartErr" class="alert alert-error hidden"></div>
+      <button class="btn" style="width:100%" id="cartBtn" onclick="checkoutCart()">Оплатить всё</button>
+    </div>
+  </div>
+</div>
+
+<!-- ЧАТ ПО ЗАКАЗУ -->
+<div class="modal-bg" id="chatModal">
+  <div class="modal">
+    <button class="close-btn" onclick="closeModal('chatModal')">✕</button>
+    <h3 id="chatHead" style="margin-bottom:4px"></h3>
+    <p id="chatSub" style="color:var(--muted);font-size:12px;margin-bottom:10px"></p>
+    <div id="chatBox" style="display:flex;flex-direction:column;max-height:45vh;overflow-y:auto"></div>
+    <div class="row" style="margin-top:10px"><input id="chatInp" class="form-control" maxlength="500" placeholder="Сообщение..." style="flex:3" onkeydown="if(event.key==='Enter')sendChat()">
+      <button class="btn" style="flex:0 0 auto" onclick="sendChat()">➤</button></div>
+  </div>
+</div>
+
+<!-- ПРОДАВЕЦ -->
+<div class="modal-bg" id="sellerModal">
+  <div class="modal wide">
+    <button class="close-btn" onclick="closeModal('sellerModal')">✕</button>
+    <div id="sellerBody"></div>
+  </div>
+</div>
+
+<!-- УВЕДОМЛЕНИЯ -->
+<div class="modal-bg" id="notifModal">
+  <div class="modal">
+    <button class="close-btn" onclick="closeModal('notifModal')">✕</button>
+    <h3 style="margin-bottom:10px">🔔 Уведомления</h3>
+    <div id="notifList"></div>
+    <button class="btn btn-sec" style="width:100%;margin-top:12px" onclick="clearNotifs()">Очистить все</button>
+  </div>
+</div>
+
+<!-- ЧЕК -->
+<div class="modal-bg" id="receiptModal">
+  <div class="modal">
+    <button class="close-btn" onclick="closeModal('receiptModal')">✕</button>
+    <h3 style="color:var(--ok)" id="receiptHead">✔ Оплата прошла</h3>
+    <div class="receipt" id="receiptText"></div>
+    <div id="receiptDl"></div>
+    <button class="btn" style="width:100%;margin-top:8px" onclick="closeModal('receiptModal')">Готово</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* ================== НАСТРОЙКИ ================== */
+/* ===== ОНЛАЙН (Supabase) — вставьте свои данные, чтобы сайт был общим для всех ===== */
+const SB_URL = '';   // например: 'https://abcdxyz.supabase.co'
+const SB_KEY = '';   // anon public key из Project Settings → API
+
+const ADMIN_LOGIN = 'empty_gnerti';
+const ADMIN_HASH  = 'dc1a6ca36181815ac780fb25e6fd34530ab6e7c278436abfe955737db36e0aa1'; // sha256 пароля админа
+const MAX_FILE = 2 * 1024 * 1024;
+
+/* ================== ХРАНИЛИЩЕ ================== */
+function load(k, def){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : def; }catch(e){ return def; } }
+function save(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); return true; }catch(e){ toast('Не хватает места в браузере — уберите большие файлы/картинки','error'); return false; } }
+
+let cats = load('gn2_cats', [
+  { id:'app',   name:'Программы',        icon:'💾' },
+  { id:'game',  name:'Игровые предметы', icon:'⚔️' },
+  { id:'key',   name:'Ключи / Коды',     icon:'🔑' },
+  { id:'gfx',   name:'Худы & Графика',   icon:'🎨' },
+  { id:'device',name:'Девайсы',          icon:'📱' },
+  { id:'other', name:'Другое',           icon:'📦' }
+]);
+let users    = load('gn2_users', {});
+let products = load('gn2_prods', null) || [
+  { id:1, cat:'app', kind:'file', title:'GNERTI Booster PRO', desc:'Ускоряет Windows: чистка мусора, автозагрузка, режим игры.', price:300, stock:999, img:'', file:'https://gnerti.com/booster.zip', fileData:'', fileName:'', deliver:'', seller:ADMIN_LOGIN, sales:0, created:1 },
+  { id:2, cat:'device', kind:'item', title:'Смартфон GNERTI Red Alpha', desc:'Игровой телефон 512GB, AMOLED 144Hz.', price:12000, stock:5, img:'', file:'', fileData:'', fileName:'', deliver:'Продавец свяжется по email для доставки.', seller:ADMIN_LOGIN, sales:0, created:2 },
+  { id:3, cat:'game', kind:'item', title:'Легендарный Меч Тьмы', desc:'Редкий игровой предмет. Передача в игре на ваш ник.', price:150, stock:20, img:'', file:'', fileData:'', fileName:'', deliver:'Предмет будет передан в игре на указанный ник.', seller:ADMIN_LOGIN, sales:0, created:3 },
+  { id:4, cat:'key', kind:'key', title:'Ключ GNERTI Premium (30 дней)', desc:'Премиум-доступ ко всем программам GNERTI.', price:99, stock:100, img:'', file:'', fileData:'', fileName:'', deliver:'', seller:ADMIN_LOGIN, sales:0, created:4 }
+];
+let orders   = load('gn2_orders', []);
+let txs      = load('gn2_tx', []);
+let reviews  = load('gn2_reviews', []);
+let posts    = load('gn2_posts', []);
+let tickets  = load('gn2_tickets', []);
+let promos   = load('gn2_promos', [
+  { code:'GNERTI500', kind:'balance', value:500, limit:0, used:[] },
+  { code:'WELCOME',   kind:'balance', value:250, limit:0, used:[] },
+  { code:'SALE10',    kind:'discount', value:10, limit:0, used:[] }
+]);
+let settings = Object.assign({ banner:'', fee:5, earned:0, demoTopup:true, demoLimit:5000, payLink:'', payInfo:'Переведите сумму админу и укажите в комментарии свой логин.\nПосле проверки деньги придут на кошелёк.' }, load('gn2_settings', {}));
+let topups   = load('gn2_topups', []);
+let notifs   = load('gn2_notifs', []);
+let reports  = load('gn2_reports', []);
+let codes    = load('gn2_codes', []);
+let session  = load('gn2_session', null);
+
+/* ---- старые товары/данные из прошлых версий ---- */
+(function migrate(){
+  const done = load('gn2_migrated', []);
+  const mark = id => { done.push(String(id)); };
+  const isDone = id => done.includes(String(id));
+  const ensureUser = (name, email) => { if(name && !users[name]) users[name] = { hash:null, balance:0, email:email||'', role:'user', verified:false, banned:false, created:Date.now() }; };
+  let n = 0;
+  (load('gn_prods', []) || []).forEach(o => {
+    if(!o || isDone('a'+o.id)) return; mark('a'+o.id);
+    if(products.some(p => p.title === o.title)) return;
+    products.push({ id:Date.now()+Math.floor(Math.random()*1e6), cat:o.type==='phone'?'device':'app', kind:o.type==='phone'?'item':'file',
+      title:String(o.title||'Без названия'), desc:String(o.desc||''), price:Math.max(0,Math.round(+o.price||0)), stock:10, img:'',
+      file:o.file||'', fileData:'', fileName:'', deliver:o.email?`Email продавца: ${o.email}`:'', seller:o.seller||ADMIN_LOGIN, sales:0, created:Date.now() });
+    ensureUser(o.seller, o.email); n++;
+  });
+  (load('g_items', []) || []).forEach(o => {
+    if(!o || isDone('b'+o.id)) return; mark('b'+o.id);
+    if(o.type === 'post'){
+      posts.push({ id:'p'+Date.now()+Math.floor(Math.random()*1e6), author:o.author||'Аноним', title:o.title||'', text:o.desc||'', img:o.imageUrl||'', likes:[], comments:[], date:Date.now() });
+    } else {
+      if(products.some(p => p.title === o.title)) return;
+      products.push({ id:Date.now()+Math.floor(Math.random()*1e6), cat:cats.some(c=>c.id===o.category)?o.category:'app', kind:'file',
+        title:String(o.title||'Без названия'), desc:String(o.desc||''), price:o.isPaid?Math.max(1,Math.round(+o.price||0)):0, stock:999,
+        img:o.imageUrl||'', file:'', fileData:o.fileData||'', fileName:o.fileName||'', deliver:'', seller:o.author||ADMIN_LOGIN, sales:0, created:Date.now() });
+    }
+    ensureUser(o.author); n++;
+  });
+  (load('g_tickets', []) || []).forEach(t => {
+    if(!t || isDone('c'+t.id)) return; mark('c'+t.id);
+    const msgs = [{ from:t.author, admin:false, text:t.message||'', date:Date.now() }];
+    if(t.reply) msgs.push({ from:ADMIN_LOGIN, admin:true, text:t.reply, date:Date.now() });
+    tickets.push({ id:'t'+Date.now()+Math.floor(Math.random()*1e6), author:t.author, topic:t.subject||'Обращение', order:'', msgs, status:t.reply?'answered':'open', date:Date.now() });
+  });
+  save('gn2_migrated', done);
+  if(n) setTimeout(() => toast(`Перенесено из старой версии: ${n}`), 300);
+})();
+
+/* ---- аккаунт администратора ---- */
+users[ADMIN_LOGIN] = Object.assign({ balance:0, email:'', created:Date.now() }, users[ADMIN_LOGIN] || {}, { hash:ADMIN_HASH, role:'admin', verified:true, banned:false });
+Object.values(users).forEach(u => { u.role = u.role || 'user'; u.usedPromos = u.usedPromos || []; u.favs = u.favs || []; u.follows = u.follows || []; });
+products.forEach(p => { p.cat = p.cat || p.type || 'other'; p.kind = p.kind || (p.type==='app'?'file':p.type==='key'?'key':'item'); });
+
+function persist(){
+  save('gn2_users',users); save('gn2_prods',products); save('gn2_orders',orders); save('gn2_tx',txs);
+  save('gn2_reviews',reviews); save('gn2_posts',posts); save('gn2_tickets',tickets); save('gn2_promos',promos);
+  save('gn2_settings',settings); save('gn2_cats',cats); save('gn2_topups',topups); save('gn2_notifs',notifs); save('gn2_reports',reports); save('gn2_codes',codes); xpCache = null;
+  if(typeof syncSchedule === 'function') syncSchedule();
+}
+function me(){ const u = session && users[session]; if(!u) return null; u.favs = u.favs || []; u.follows = u.follows || []; u.usedPromos = u.usedPromos || []; return u; }
+function isAdmin(){ return !!me() && me().role === 'admin'; }
+function fee(){ return (settings.fee || 0) / 100; }
+
+/* ================== УТИЛИТЫ ================== */
+function esc(s){ return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function money(n){ return Math.round(n).toLocaleString('ru-RU') + ' ₴'; }
+function date(t){ return new Date(t).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'}); }
+function validEmail(e){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e); }
+function safeUrl(u){ return /^https?:\/\//i.test(u) || /^data:image\//i.test(u) ? u : ''; }
+function priceOf(p){ return Math.round(p.price * (1 - (p.sale||0)/100)); }
+function priceHtml(p, small=false){
+  if(!p.price) return `<span class="price free" ${small?'style="font-size:13px"':''}>${small?'FREE':'БЕСПЛАТНО'}</span>`;
+  return `<span class="price" ${small?'style="font-size:13px"':''}>${p.sale ? `<span class="old">${money(p.price)}</span>` : ''}${money(priceOf(p))}</span>`;
+}
+function catOf(id){ return cats.find(c=>c.id===id) || { id:'other', name:'Другое', icon:'📦' }; }
+function prodReviews(id){ return reviews.filter(r=>r.pid===id); }
+function rating(id){ const r = prodReviews(id); return r.length ? r.reduce((a,b)=>a+b.v,0)/r.length : 0; }
+function stars(r){ const n = Math.round(r); return '★'.repeat(n) + '☆'.repeat(5-n); }
+let xpCache = null;
+function xpOf(name){
+  if(!xpCache){
+    xpCache = {};
+    const add = (n,v) => { if(n) xpCache[n] = (xpCache[n]||0) + v; };
+    orders.forEach(o => { if(o.status!=='refund'){ add(o.seller, 10*o.qty); add(o.buyer, 5); } });
+    posts.forEach(p => { add(p.author, 3); add(p.author, p.likes.length); });
+    reviews.forEach(rv => add(rv.by, 2));
+  }
+  return xpCache[name] || 0;
+}
+function levelOf(name){ const xp = xpOf(name); const lvl = Math.floor(Math.sqrt(xp/20)) + 1; return { lvl, xp, cur:20*(lvl-1)**2, next:20*lvl**2 }; }
+function roleBadge(name){
+  const u = users[name]; if(!u) return '';
+  return roleOnly(name) + `<span class="role role-lvl" title="Уровень игрока">Ур.${levelOf(name).lvl}</span>`;
+}
+function roleOnly(name){
+  const u = users[name]; if(!u) return '';
+  if(u.role==='admin') return '<span class="role role-admin">ADMIN</span>';
+  if(u.verified) return '<span class="role role-dev">VERIFIED</span>';
+  return '';
+}
+function readFile(file){ return new Promise(res => { const r = new FileReader(); r.onload = () => res(r.result); r.readAsDataURL(file); }); }
+
+async function sha256(str){
+  if(window.crypto && crypto.subtle){
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+  }
+  let h = 0; for(const c of str){ h = (h*31 + c.charCodeAt(0)) | 0; } return 'x' + h;
+}
+
+function toast(msg, type='success'){
+  const d = document.createElement('div');
+  d.className = 'alert alert-' + (type==='error'?'error':'success');
+  d.textContent = msg;
+  const box = document.getElementById('toast');
+  while(box.children.length >= 4) box.firstChild.remove();
+  box.appendChild(d);
+  setTimeout(()=>d.remove(), 3500);
+}
+function showErr(id, msg){ const e = document.getElementById(id); e.textContent = msg; e.classList.remove('hidden'); }
+function hideErr(id){ document.getElementById(id).classList.add('hidden'); }
+function openModal(id){ document.getElementById(id).style.display = 'flex'; }
+function closeModal(id){ const el = document.getElementById(id); if(!el) return; el.style.display = 'none'; if(id==='detModal' && location.hash){ try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){} } }
+function needLogin(){ if(me()) return false; toast('Сначала войдите в аккаунт','error'); openAuth(); return true; }
+
+function addTx(login, amount, note, kind='', peer=''){
+  if(!users[login]) return;
+  txs.unshift({ id:'t'+Date.now().toString(36)+Math.random().toString(36).slice(2,8), login, amount, note, kind, peer, date:Date.now(), balance:users[login].balance });
+}
+/* Баланс = сумма всех операций игрока. Так переводы и покупки не теряются, даже если два игрока действуют одновременно. */
+function recalcBalances(){
+  const sum = {};
+  txs.forEach(t => { sum[t.login] = (sum[t.login]||0) + (+t.amount||0); });
+  Object.entries(users).forEach(([l,u]) => {
+    if(!u.ledger){
+      const open = Math.round((+u.balance||0) - (sum[l]||0));
+      if(open){ txs.push({ id:'open_'+l, login:l, amount:open, note:'Начальный баланс', kind:'open', date:u.created||0, balance:u.balance }); sum[l] = (sum[l]||0) + open; }
+      u.ledger = true;
+    }
+    u.balance = Math.round(sum[l]||0);
+  });
+}
+
+/* ================== НАВИГАЦИЯ ================== */
+let curTab = 'market';
+function showTab(t){
+  if((t==='cabinet' || t==='wallet') && !me()) { openAuth(); return; }
+  if(t==='admin' && !isAdmin()) t = 'market';
+  curTab = t;
+  document.querySelector('.hero').classList.toggle('hidden', t!=='market');
+  ['market','feed','support','cabinet','wallet','admin'].forEach(x => document.getElementById('tab-'+x).classList.toggle('hidden', x!==t));
+  document.querySelectorAll('.nav-link').forEach(e => e.classList.toggle('active', e.dataset.tab===t));
+  refreshViews();
+}
+function refreshViews(){
+  renderUserMenu(); renderBanner(); renderHero();
+  if(curTab==='market') renderProducts();
+  if(curTab==='feed') renderFeed();
+  if(curTab==='support') renderSupport();
+  if(curTab==='cabinet') renderCabinet();
+  if(curTab==='admin') renderAdmin();
+  if(curTab==='wallet') renderWallet();
+}
+function renderHero(){
+  const sold = orders.filter(o=>o.status!=='refund').reduce((a,o)=>a+o.qty,0);
+  document.getElementById('heroStats').innerHTML = `
+    <div><b>${products.length}</b><small>Товаров</small></div>
+    <div><b>${Object.values(users).filter(u=>u.hash!==null).length}</b><small>Игроков</small></div>
+    <div><b>${sold}</b><small>Продано</small></div>
+    <div><b>${posts.length}</b><small>Постов</small></div>`;
+}
+function openSeller(name){
+  const u = users[name]; closeModal('detModal');
+  const list = products.filter(p=>p.seller===name);
+  const sales = orders.filter(o=>o.seller===name && o.status!=='refund');
+  const revs = reviews.filter(r=>list.some(p=>p.id===r.pid));
+  const avg = revs.length ? revs.reduce((a,b)=>a+b.v,0)/revs.length : 0;
+  document.getElementById('sellerBody').innerHTML = `
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="width:50px;height:50px;border-radius:50%;background:color-mix(in srgb,var(--red) 20%,transparent);border:2px solid var(--red);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:var(--red)">${esc(name.charAt(0).toUpperCase())}</div>
+      <div><h3>${esc(name)}${roleBadge(name)}</h3><div style="color:var(--muted);font-size:12px">${u ? 'На GNERTI с ' + new Date(u.created).toLocaleDateString('ru-RU') : ''}</div></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><small>Товаров</small><div>${list.length}</div></div>
+      <div class="stat"><small>Продаж</small><div>${sales.reduce((a,o)=>a+o.qty,0)}</div></div>
+      <div class="stat"><small>Рейтинг</small><div class="stars">${revs.length ? avg.toFixed(1)+' ★' : '—'}</div></div>
+    </div>
+    <h4 style="margin-top:14px">Товары продавца</h4>
+    ${list.length ? `<div class="mini" style="flex-wrap:wrap">${list.map(x=>`
+      <div class="card" onclick="closeModal('sellerModal');openDetails(${x.id})"><div class="card-img" style="${safeUrl(x.img)?`background-image:url('${esc(x.img)}')`:''}">${safeUrl(x.img)?'':esc(catOf(x.cat).icon)}</div>
+      <div class="card-body"><b>${esc(x.title.slice(0,30))}</b>${priceHtml(x,true)}</div></div>`).join('')}</div>` : '<div class="empty">Нет товаров</div>'}
+    ${session && session!==name && u && u.hash!==null ? `<button class="btn" style="width:100%;margin-top:14px" onclick="toggleFollow('${esc(name)}')">${me().follows.includes(name) ? '✔ Вы подписаны (отписаться)' : '🔔 Подписаться на новинки'}</button>` : ''}
+    <div style="text-align:center;color:var(--muted);font-size:12px;margin-top:6px">Подписчиков: ${followersOf(name)} • Уровень ${levelOf(name).lvl}</div>
+    ${session && session!==name && u && u.hash!==null ? `<button class="btn btn-sec" style="width:100%;margin-top:10px" onclick="closeModal('sellerModal');openWallet('send');document.getElementById('wTo').value='${esc(name)}'">💸 Перевести деньги продавцу</button>` : ''}`;
+  openModal('sellerModal');
+}
+function exportData(){
+  const keys = ['gn2_users','gn2_prods','gn2_orders','gn2_tx','gn2_reviews','gn2_posts','gn2_tickets','gn2_promos','gn2_settings','gn2_cats','gn2_topups','gn2_notifs','gn2_reports','gn2_codes'];
+  const data = {}; keys.forEach(k => data[k] = load(k, null));
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(data)], { type:'application/json' }));
+  a.download = `gnerti_backup_${new Date().toISOString().slice(0,10)}.json`; a.click();
+  toast('Резервная копия скачана');
+}
+function importData(input){
+  const file = input.files[0]; if(!file) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try{
+      const data = JSON.parse(r.result);
+      if(!data.gn2_users || !data.gn2_prods) throw 0;
+      if(!confirm('Заменить ВСЕ текущие данные данными из копии?')) return;
+      Object.entries(data).forEach(([k,v]) => { if(k.startsWith('gn2_') && v !== null) localStorage.setItem(k, JSON.stringify(v)); });
+      location.reload();
+    }catch(e){ toast('Это не файл резервной копии GNERTI','error'); }
+  };
+  r.readAsText(file);
+}
+const SKINS = { gnerti:['GNERTI Red','linear-gradient(135deg,#070709,#ff0033)'], steam:['Steam','linear-gradient(135deg,#171a21,#1b2838 55%,#66c0f4)'],
+  cyber:['Cyber','linear-gradient(135deg,#07040f,#b84dff 60%,#2ef2c9)'], gold:['Gold','linear-gradient(135deg,#0a0805,#f2b01e)'] };
+function uiGet(){ const d = document.documentElement.dataset; return { skin:d.skin||'gnerti', theme:d.theme||'dark', compact:d.compact==='1', motion:d.motion!=='0' }; }
+function uiSet(ch){
+  const u = Object.assign(uiGet(), ch), d = document.documentElement.dataset;
+  d.skin = u.skin; d.theme = u.theme; d.compact = u.compact ? '1' : '0'; d.motion = u.motion ? '1' : '0';
+  try{ localStorage.setItem('gn2_ui', JSON.stringify(u)); localStorage.setItem('gn2_theme', u.theme); }catch(e){}
+  renderUserMenu(); if(document.getElementById('uiModal').style.display==='flex') renderUi();
+}
+function themeBtn(){ return `<span class="bell" title="Интерфейс: стиль и тема" onclick="openUi()">🎨</span>`; }
+function toggleTheme(){ uiSet({ theme: uiGet().theme==='light' ? 'dark' : 'light' }); }
+function openUi(){ renderUi(); openModal('uiModal'); }
+function renderUi(){
+  const u = uiGet();
+  const seg = (opts, cur, fn) => opts.map(([v,t]) => `<button class="btn btn-sm ${v===cur?'':'btn-sec'}" onclick="${fn}(${JSON.stringify(v).replace(/"/g,"'")})">${t}</button>`).join('');
+  document.getElementById('uiSkins').innerHTML = Object.entries(SKINS).map(([k,[n,g]]) => `<div class="skin ${k===u.skin?'on':''}" onclick="uiSet({skin:'${k}'})"><i style="background:${g}"></i>${n}</div>`).join('');
+  document.getElementById('uiTheme').innerHTML = seg([['dark','🌙 Тёмная'],['light','☀️ Светлая']], u.theme, 'uiTheme');
+  document.getElementById('uiCompact').innerHTML = seg([[false,'Обычные'],[true,'Компактные']], u.compact, 'uiCompact');
+  document.getElementById('uiMotion').innerHTML = seg([[true,'Включены'],[false,'Выключены']], u.motion, 'uiMotion');
+}
+function uiTheme(v){ uiSet({ theme:v }); } function uiCompact(v){ uiSet({ compact:v }); } function uiMotion(v){ uiSet({ motion:v }); }
+function renderBanner(){
+  const b = document.getElementById('banner');
+  b.textContent = settings.banner || '';
+  b.classList.toggle('hidden', !settings.banner);
+}
+function renderUserMenu(){
+  const menu = document.getElementById('userMenu');
+  const u = me();
+  document.getElementById('adminNav').classList.toggle('hidden', !isAdmin());
+  if(u){
+    menu.innerHTML = `
+      <span class="bell" onclick="openCart()" title="Корзина">🛒${cartCount()?`<i>${cartCount()}</i>`:''}</span>
+      <span class="bell" onclick="openNotifs()" title="Уведомления">🔔${unread()?`<i>${unread()}</i>`:''}</span>
+      <span class="wallet" onclick="openWallet()" title="Пополнить кошелёк">💰 <b>${money(u.balance)}</b> <span style="color:var(--red)">＋</span></span>
+      <span class="link" style="font-size:13px;color:var(--title)" onclick="showTab('cabinet')">${esc(session)}</span>${roleOnly(session)}
+      ${themeBtn()}<span class="bell" title="Выйти" onclick="logout()">⏻</span>`;
+  } else {
+    menu.innerHTML = `<button class="btn" onclick="openAuth()">Войти</button>${themeBtn()}`;
+  }
+}
+
+/* ================== АВТОРИЗАЦИЯ ================== */
+let authMode = 'login';
+function openAuth(){ setAuthMode('login'); openModal('authModal'); }
+function setAuthMode(m){
+  authMode = m;
+  document.getElementById('authTabLogin').classList.toggle('btn-sec', m!=='login');
+  document.getElementById('authTabReg').classList.toggle('btn-sec', m!=='reg');
+  document.getElementById('authEmailWrap').classList.toggle('hidden', m!=='reg');
+  document.getElementById('authBtn').textContent = m==='login' ? 'Войти' : 'Создать аккаунт';
+  document.getElementById('authHint').textContent = m==='reg' ? 'После регистрации пополните кошелёк, чтобы покупать.' : '';
+  hideErr('authErr');
+}
+async function handleAuth(){
+  const l = document.getElementById('authLogin').value.trim();
+  const p = document.getElementById('authPass').value;
+  if(!l || !p) return showErr('authErr','Введите логин и пароль');
+  const hash = await sha256(p);
+  let u = users[l];
+
+  if(authMode==='login'){
+    if(u && u.hash === null) return showErr('authErr','Это ник из старой версии — откройте «Регистрация» и задайте пароль, ваши товары останутся вашими');
+    if(!u || u.hash !== hash) return showErr('authErr','Неверный логин или пароль');
+    if(u.banned) return showErr('authErr','Аккаунт заблокирован администратором');
+  } else {
+    if(!/^[a-zA-Z0-9_]{3,24}$/.test(l)) return showErr('authErr','Логин: 3–24 символа, латиница, цифры и _');
+    if(u && u.hash !== null) return showErr('authErr','Такой логин уже занят');
+    if(p.length < 6) return showErr('authErr','Пароль минимум 6 символов');
+    const email = document.getElementById('authEmail').value.trim();
+    if(email && !validEmail(email)) return showErr('authErr','Неверный email');
+    if(u){ u.hash = hash; if(email) u.email = email; }
+    else {
+      users[l] = { hash, balance:0, email, role:'user', verified:false, banned:false, usedPromos:[], favs:[], created:Date.now() };
+    }
+    persist();
+  }
+  session = l; save('gn2_session', session);
+  document.getElementById('authPass').value = '';
+  closeModal('authModal');
+  toast(authMode==='login' ? `Приветствуем, ${l}!` : 'Аккаунт создан!');
+  refreshViews();
+}
+function logout(){ session = null; save('gn2_session', null); showTab('market'); }
+
+/* ================== ВИТРИНА ================== */
+function fillCategorySelects(){
+  const opts = cats.map(c => `<option value="${esc(c.id)}">${esc(c.icon)} ${esc(c.name)}</option>`).join('');
+  const f = document.getElementById('fCat'); const keep = f.value;
+  f.innerHTML = '<option value="">🔥 Все категории</option><option value="__fav">❤ Избранное</option>' + opts; f.value = keep;
+  document.getElementById('pubCat').innerHTML = opts;
+}
+
+function renderProducts(){
+  const q = document.getElementById('fSearch').value.trim().toLowerCase();
+  const cat = document.getElementById('fCat').value;
+  const sort = document.getElementById('fSort').value;
+  const favs = me() ? me().favs : [];
+  const pmin = parseFloat(document.getElementById('fMin').value), pmax = parseFloat(document.getElementById('fMax').value);
+  const pr = p => p.auction ? aucCur(p) : priceOf(p);
+  let list = products.filter(p => (!cat || p.cat===cat || (cat==='__fav' && favs.includes(p.id))) && (!q || (p.title+' '+p.desc+' '+p.seller).toLowerCase().includes(q))
+    && (isNaN(pmin) || pr(p) >= pmin) && (isNaN(pmax) || pr(p) <= pmax));
+  renderTopSellers(); renderRecent();
+  const sorters = { new:(a,b)=>b.created-a.created, cheap:(a,b)=>priceOf(a)-priceOf(b), exp:(a,b)=>priceOf(b)-priceOf(a), sale:(a,b)=>(b.sale||0)-(a.sale||0), pop:(a,b)=>b.sales-a.sales, rate:(a,b)=>rating(b.id)-rating(a.id) };
+  list.sort(sorters[sort]);
+
+  const key = q+'|'+cat+'|'+sort+'|'+pmin+'|'+pmax;
+  if(key !== lastKey){ lastKey = key; shown = PAGE; }
+  const total = list.length;
+  list = list.slice(0, shown);
+  const grid = document.getElementById('marketGrid');
+  if(!list.length){ grid.innerHTML = `<div class="empty">${cat==='__fav' ? (me() ? 'В избранном пусто — жмите ❤ на товарах' : 'Войдите, чтобы видеть избранное') : 'Ничего не найдено'}</div>`; return; }
+  grid.innerHTML = list.map(p => {
+    const c = catOf(p.cat), img = safeUrl(p.img), r = rating(p.id), rc = prodReviews(p.id).length;
+    const own = session === p.seller;
+    return `
+    <div class="card">
+      <div class="card-img" onclick="openDetails(${p.id})" style="${img ? `background-image:url('${esc(img)}')` : ''}">${img ? '' : esc(c.icon)}</div>
+      <span class="badge">${Date.now()-p.created < 3*864e5 ? '<span class="tag tag-new">NEW</span>' : ''}${p.sales >= 10 ? '<span class="tag tag-hit">ХИТ</span>' : ''}${esc(c.name)}</span>
+      <span class="cmp ${cmpList.includes(p.id)?'on':''}" onclick="toggleCmp(${p.id})" title="Сравнить">⚖</span>
+      ${p.sale && p.price ? `<span class="sale">−${p.sale}%</span>` : ''}
+      <span class="fav ${favs.includes(p.id)?'on':''}" onclick="toggleFav(${p.id})" title="В избранное">❤</span>
+      <div class="card-body">
+        <div class="card-title" onclick="openDetails(${p.id})">${esc(p.title)}</div>
+        <div class="card-desc">${esc(p.desc.length>110 ? p.desc.slice(0,110)+'…' : p.desc)}</div>
+        <div class="meta">
+          <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">👤 <span class="link" style="font-weight:600" onclick="openSeller('${esc(p.seller)}')">${esc(p.seller)}</span>${roleOnly(p.seller)}</span>
+          <span class="stars" style="white-space:nowrap">${rc ? stars(r)+' '+r.toFixed(1) : '<span style="color:var(--muted)">нет оценок</span>'}</span>
+        </div>
+        ${p.auction ? aucBox(p) : `<div class="meta"><span class="${p.stock>0&&p.stock<=3?'low':''}">${p.stock>0&&p.stock<=3 ? `🔥 Осталось ${p.stock}!` : `В наличии: ${p.stock} шт.`}</span><span>${p.price ? 'Продано' : 'Скачано'}: ${p.sales}</span></div>`}
+        <div class="card-footer">
+          ${p.auction ? `<span class="price">${money(aucCur(p))}</span>` : priceHtml(p)}
+          ${p.auction ? (p.auction.done ? '<span class="sold-out">ЗАВЕРШЁН</span>' : own ? '<span class="sold-out">ВАШ ЛОТ</span>' : `<button class="btn" onclick="placeBid(${p.id})">🔨 Ставка</button>`)
+            : p.stock <= 0 ? '<span class="sold-out">НЕТ В НАЛИЧИИ</span>'
+            : own ? '<span class="sold-out">ВАШ ТОВАР</span>'
+            : `<span style="display:flex;gap:6px">${p.price ? `<button class="btn btn-sec btn-cart" title="В корзину" onclick="addToCart(${p.id})">🛒</button>` : ''}<button class="btn" onclick="startBuy(${p.id})">${p.price ? 'Купить' : 'Получить'}</button></span>`}
+        </div>
+      </div>
+    </div>`;
+  }).join('') + (total > shown ? `<div style="grid-column:1/-1;text-align:center"><button class="btn btn-sec" onclick="shown+=PAGE;renderProducts()">Показать ещё (${total-shown})</button></div>` : '');
+}
+const PAGE = 12; let shown = PAGE, lastKey = '';
+
+/* ---- детали и отзывы ---- */
+let detId = null, pickStars = 5;
+function openDetails(id){ detId = id; pickStars = 5; const p = products.find(x=>x.id===id);
+  if(me()){ const u = me(); u.seen = [id, ...(u.seen||[]).filter(x=>x!==id)].slice(0,10); }
+  try{ history.replaceState(null, '', '#p=' + id); }catch(e){}
+  if(p && p.seller!==session){ p.views = (p.views||0)+1; } persist(); renderDetails(); openModal('detModal'); }
+function renderDetails(){
+  const p = products.find(x=>x.id===detId); if(!p) return closeModal('detModal');
+  const c = catOf(p.cat), img = safeUrl(p.img), revs = prodReviews(p.id), r = rating(p.id);
+  const bought = me() && orders.some(o=>o.buyer===session && o.productId===p.id && o.status!=='refund');
+  const reviewed = revs.some(x=>x.by===session);
+  document.getElementById('detBody').innerHTML = `
+    ${img ? `<div class="card-img" style="height:200px;border-radius:8px;border:none;background-image:url('${esc(img)}')"></div>` : ''}
+    <h3 style="margin:12px 0 4px">${esc(p.title)}</h3>
+    <div style="color:var(--muted);font-size:12px;margin-bottom:10px">${esc(c.icon)} ${esc(c.name)} • Продавец: <span class="link" onclick="openSeller('${esc(p.seller)}')">${esc(p.seller)}</span>${roleBadge(p.seller)} • в наличии ${p.stock} шт. • 👁 ${p.views||0}</div>
+    <p style="background:var(--input);padding:12px;border-radius:8px;font-size:14px;line-height:1.5;white-space:pre-wrap">${esc(p.desc)}</p>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin:14px 0">
+      ${p.auction ? `<span class="price">${money(aucCur(p))}</span>` : priceHtml(p)}
+      ${p.auction ? (!p.auction.done && session!==p.seller ? `<button class="btn" onclick="placeBid(${p.id})">🔨 Сделать ставку</button>` : '')
+        : p.stock>0 && session!==p.seller ? `<button class="btn" onclick="closeModal('detModal');startBuy(${p.id})">${p.price?'Купить':'Получить'}</button>`:''}
+    </div>
+    ${p.auction ? aucBox(p) + (p.auction.bids.length ? `<div style="font-size:12px;color:var(--muted);margin-bottom:10px">История ставок: ${[...p.auction.bids].reverse().slice(0,8).map(b=>`${esc(b.by)} — ${money(b.amount)}`).join(' • ')}</div>` : '') : ''}
+    <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:12px">
+      <span class="link" onclick="shareProduct(${p.id})">🔗 Скопировать ссылку</span>
+      ${me() && session!==p.seller ? `<span class="link" style="color:var(--muted)" onclick="report('product',${p.id})">⚠ Пожаловаться</span>` : ''}</div>
+    ${(() => { const sim = products.filter(x=>x.id!==p.id && x.cat===p.cat && x.stock>0).sort((a,b)=>b.sales-a.sales).slice(0,6);
+      return sim.length ? `<h4 style="margin-top:6px">Похожие товары</h4><div class="mini">${sim.map(x=>`
+        <div class="card" onclick="openDetails(${x.id})"><div class="card-img" style="${safeUrl(x.img)?`background-image:url('${esc(x.img)}')`:''}">${safeUrl(x.img)?'':esc(catOf(x.cat).icon)}</div>
+        <div class="card-body"><b>${esc(x.title.slice(0,30))}</b>${priceHtml(x,true)}</div></div>`).join('')}</div>` : ''; })()}
+    <h4 style="border-bottom:1px solid var(--border);padding-bottom:6px;margin-top:14px">Отзывы ${revs.length ? `<span class="stars">${stars(r)}</span> ${r.toFixed(1)} (${revs.length})` : ''}</h4>
+    ${bought && !reviewed ? `
+      <div style="margin-top:10px">
+        <div class="star-pick">${[1,2,3,4,5].map(i=>`<span class="${i<=pickStars?'on':''}" onclick="pickStars=${i};renderDetails()">★</span>`).join('')}</div>
+        <div class="row" style="margin-top:6px"><input id="revText" class="form-control" maxlength="300" placeholder="Ваш отзыв..." style="flex:3"><button class="btn" style="flex:0 0 auto" onclick="submitReview()">Отправить</button></div>
+      </div>` : `<p style="color:var(--muted);font-size:12px;margin-top:8px">${reviewed ? 'Вы уже оставили отзыв.' : 'Оставить отзыв могут только покупатели этого товара.'}</p>`}
+    <div style="margin-top:8px">${revs.length ? revs.map(x=>`
+      <div class="review"><div style="display:flex;justify-content:space-between"><b>${esc(x.by)}</b><span class="stars">${stars(x.v)}</span></div>
+      ${x.text ? `<div style="margin-top:4px">${esc(x.text)}</div>`:''}
+      ${isAdmin() ? `<button class="btn btn-sec btn-sm" style="margin-top:6px" onclick="deleteReview('${x.id}')">Удалить</button>`:''}</div>`).join('') : '<div style="color:var(--muted);font-size:12px">Отзывов пока нет</div>'}</div>`;
+}
+function submitReview(){
+  const text = (document.getElementById('revText').value || '').trim();
+  reviews.unshift({ id:'r'+Date.now(), pid:detId, by:session, v:pickStars, text, date:Date.now() });
+  persist(); toast('Спасибо за отзыв!'); renderDetails(); renderProducts();
+}
+function deleteReview(id){ reviews = reviews.filter(r=>r.id!==id); persist(); renderDetails(); renderProducts(); }
+
+/* ================== ПУБЛИКАЦИЯ ТОВАРА ================== */
+let editId = null, pendingFile = null;
+function openPublish(id=null){
+  if(needLogin()) return;
+  editId = id; pendingFile = null;
+  const p = id ? products.find(x=>x.id===id) : null;
+  document.getElementById('pubHeader').textContent = p ? 'Редактировать товар' : 'Разместить товар';
+  document.getElementById('pubBtn').textContent = p ? 'Сохранить' : 'Опубликовать';
+  document.getElementById('pubCat').value = p ? p.cat : cats[0]?.id;
+  document.getElementById('pubKind').value = p ? p.kind : 'file';
+  document.getElementById('pubTitle').value = p ? p.title : '';
+  document.getElementById('pubDesc').value = p ? p.desc : '';
+  document.getElementById('pubPrice').value = p ? p.price : '';
+  document.getElementById('pubStock').value = p ? p.stock : 1;
+  document.getElementById('pubSale').value = p ? (p.sale||0) : 0;
+  document.getElementById('pubMode').value = p && p.auction ? 'auction' : 'fixed';
+  document.getElementById('pubMode').disabled = !!(p && p.auction && p.auction.bids.length && !p.auction.done);
+  toggleMode();
+  document.getElementById('pubImg').value = p && !/^data:/.test(p.img) ? p.img : '';
+  document.getElementById('pubFile').value = p ? p.file : '';
+  document.getElementById('pubDeliver').value = p ? p.deliver : '';
+  document.getElementById('pubImgFile').value = '';
+  document.getElementById('pubFileInput').value = '';
+  document.getElementById('pubFileCur').textContent = p && p.fileName ? `Загружен файл: ${p.fileName}` : '';
+  hideErr('pubErr'); toggleKind(); openModal('pubModal');
+}
+function toggleMode(){
+  const a = document.getElementById('pubMode').value === 'auction';
+  document.getElementById('aucHoursBox').classList.toggle('hidden', !a);
+  document.getElementById('stockBox').classList.toggle('hidden', a);
+  document.getElementById('saleBox').classList.toggle('hidden', a);
+  document.getElementById('pubPriceLbl').textContent = a ? 'Стартовая ставка (₴)' : 'Цена (₴, 0 = бесплатно)';
+}
+function toggleKind(){
+  const k = document.getElementById('pubKind').value;
+  document.getElementById('fileField').classList.toggle('hidden', k!=='file');
+  document.getElementById('itemField').classList.toggle('hidden', k!=='item');
+}
+async function submitProduct(){
+  const v = id => document.getElementById(id).value.trim();
+  const title = v('pubTitle'), desc = v('pubDesc'), cat = v('pubCat'), kind = v('pubKind');
+  const price = Math.round(parseFloat(v('pubPrice')) || 0);
+  const sale = Math.round(parseFloat(v('pubSale')) || 0);
+  if(sale < 0 || sale > 90) return showErr('pubErr','Скидка от 0 до 90%');
+  const stock = parseInt(v('pubStock'));
+  let img = v('pubImg'); const file = v('pubFile'), deliver = v('pubDeliver');
+  if(!title || !desc) return showErr('pubErr','Заполните название и описание');
+  if(price < 0) return showErr('pubErr','Цена не может быть меньше 0');
+  const mode = document.getElementById('pubMode').value;
+  if(mode==='auction' && price < 1) return showErr('pubErr','Стартовая ставка от 1 ₴');
+  if(!(stock >= 0)) return showErr('pubErr','Укажите количество');
+  if(img && !safeUrl(img)) return showErr('pubErr','Ссылка на картинку должна начинаться с http(s)://');
+  if(file && !/^https?:\/\//i.test(file)) return showErr('pubErr','Ссылка на файл должна начинаться с http(s)://');
+
+  const imgF = document.getElementById('pubImgFile').files[0];
+  if(imgF){ if(imgF.size > MAX_FILE) return showErr('pubErr','Картинка больше 2 МБ'); img = await readFile(imgF); }
+  const softF = document.getElementById('pubFileInput').files[0];
+  let fileData = null, fileName = null;
+  if(softF){ if(softF.size > MAX_FILE) return showErr('pubErr','Файл больше 2 МБ — загрузите его на диск и вставьте ссылку'); fileData = await readFile(softF); fileName = softF.name; }
+  if(kind==='file' && !file && !fileData && !(editId && products.find(x=>x.id===editId)?.fileData)) return showErr('pubErr','Добавьте файл или ссылку на скачивание');
+
+  if(editId){
+    const p = products.find(x=>x.id===editId);
+    const live = p.auction && p.auction.bids.length && !p.auction.done;
+    Object.assign(p, { cat, kind, title, desc, file, deliver });
+    if(!live){
+      if(mode==='auction'){ Object.assign(p, { price, sale:0, stock:1, auction:{ ends:Date.now()+(+v('pubAucHours'))*3600e3, bids:[], done:false } }); }
+      else { Object.assign(p, { price, sale, stock }); delete p.auction; if(sale) favWatchers(p); }
+    }
+    if(img || !imgF) p.img = img || (p.img && /^data:/.test(p.img) ? p.img : '');
+    if(fileData){ p.fileData = fileData; p.fileName = fileName; }
+    toast('Товар обновлён');
+  } else {
+    const np = { id:Date.now(), cat, kind, title, desc, price, sale:mode==='auction'?0:sale, stock:mode==='auction'?1:stock, img, file, fileData:fileData||'', fileName:fileName||'', deliver, seller:session, sales:0, created:Date.now() };
+    if(mode==='auction') np.auction = { ends:Date.now()+(+v('pubAucHours'))*3600e3, bids:[], done:false };
+    products.push(np);
+    Object.entries(users).forEach(([l,u]) => { if(l!==session && (u.follows||[]).includes(session)) notify(l, `🆕 ${session} выставил ${np.auction?'на аукцион ':''}«${title}»`, 'market'); });
+    toast(np.auction ? 'Аукцион запущен!' : 'Товар опубликован!');
+  }
+  persist(); closeModal('pubModal'); refreshViews();
+}
+
+/* ================== ПОКУПКА ================== */
+let buyProduct = null, buyDiscount = null;
+function startBuy(id){
+  const p = products.find(x=>x.id===id); if(!p) return;
+  if(!p.price && p.kind==='file'){ freeDownload(p); return; }
+  if(needLogin()) return;
+  buyProduct = p; buyDiscount = null;
+  document.getElementById('buyTitle').textContent = `${p.title} • ${p.price ? money(priceOf(p))+' за шт.' : 'бесплатно'} • в наличии ${p.stock}`;
+  document.getElementById('buyQty').value = 1;
+  document.getElementById('buyQty').max = p.stock;
+  document.getElementById('buyEmail').value = me().email || '';
+  document.getElementById('buyNick').value = '';
+  document.getElementById('buyPromo').value = '';
+  document.getElementById('buyNickWrap').classList.toggle('hidden', p.kind!=='item');
+  hideErr('buyErr'); updateBuySummary(); openModal('buyModal');
+}
+function freeDownload(p){
+  if(p.stock <= 0) return toast('Нет в наличии','error');
+  p.sales++; persist();
+  downloadProduct(p); toast('Скачивание началось'); renderProducts();
+}
+function downloadProduct(p){
+  if(p.fileData){ const a = document.createElement('a'); a.href = p.fileData; a.download = p.fileName || 'GNERTI-file'; a.click(); }
+  else if(p.file) window.open(p.file, '_blank', 'noopener');
+}
+function applyDiscount(){
+  const code = document.getElementById('buyPromo').value.trim().toUpperCase();
+  const pr = promos.find(x=>x.code===code && x.kind==='discount');
+  if(!pr) { buyDiscount = null; toast('Нет такого промокода на скидку','error'); }
+  else if(pr.limit && pr.used.length >= pr.limit) { buyDiscount = null; toast('Промокод закончился','error'); }
+  else if(pr.used.includes(session)) { buyDiscount = null; toast('Вы уже использовали этот промокод','error'); }
+  else { buyDiscount = pr; toast(`Скидка ${pr.value}% применена!`); }
+  updateBuySummary();
+}
+function calcTotal(qty){
+  const sub = qty * priceOf(buyProduct);
+  const disc = buyDiscount ? Math.round(sub * buyDiscount.value / 100) : 0;
+  return { sub, disc, total: sub - disc };
+}
+function updateBuySummary(){
+  if(!buyProduct) return;
+  const qty = Math.max(1, parseInt(document.getElementById('buyQty').value) || 1);
+  const { sub, disc, total } = calcTotal(qty);
+  const bal = me().balance, after = bal - total;
+  document.getElementById('buySummary').innerHTML = `
+    <div><span>Цена × ${qty}</span><span>${money(sub)}</span></div>
+    ${disc ? `<div><span>Скидка ${buyDiscount.code}</span><span class="pos">−${money(disc)}</span></div>` : ''}
+    <div><span>На кошельке</span><span>${money(bal)}</span></div>
+    <div class="total"><span>Останется после оплаты</span><span class="${after<0?'neg':'pos'}">${money(after)}</span></div>
+    ${after<0 ? `<div class="neg" style="font-size:13px">Не хватает ${money(-after)}. <a style="color:var(--red);cursor:pointer;text-decoration:underline" onclick="closeModal('buyModal');openWallet()">Пополнить кошелёк</a></div>` : ''}
+    ${qty > buyProduct.stock ? `<div class="neg" style="font-size:13px">В наличии только ${buyProduct.stock} шт.</div>` : ''}`;
+  document.getElementById('buyBtn').textContent = total ? `Оплатить ${money(total)}` : 'Получить бесплатно';
+  document.getElementById('buyBtn').disabled = after < 0 || qty > buyProduct.stock;
+}
+function genKey(){ const s='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; return Array.from({length:4},()=>Array.from({length:4},()=>s[Math.floor(Math.random()*s.length)]).join('')).join('-'); }
+
+function processBuy(){
+  const u = me();
+  const p = products.find(x=>x.id===buyProduct.id);
+  const qty = parseInt(document.getElementById('buyQty').value);
+  const email = document.getElementById('buyEmail').value.trim();
+  const nick = document.getElementById('buyNick').value.trim();
+  hideErr('buyErr');
+
+  // 1. Проверка данных
+  if(!p) return showErr('buyErr','Товар больше не существует');
+  if(!(qty >= 1)) return showErr('buyErr','Укажите количество');
+  if(!validEmail(email)) return showErr('buyErr','Введите правильный Email — на него придёт товар');
+  if(qty > p.stock) return showErr('buyErr',`В наличии только ${p.stock} шт.`);
+  if(p.seller === session) return showErr('buyErr','Нельзя купить свой товар');
+
+  // 2. Проверка средств
+  const { total } = calcTotal(qty);
+  if(u.balance < total) return showErr('buyErr',`Недостаточно средств! Нужно ${money(total)}, на кошельке ${money(u.balance)}`);
+
+  const order = placeOrder(p, qty, total, email, nick, buyDiscount ? buyDiscount.code : '');
+  if(buyDiscount) buyDiscount.used.push(session);
+  persist();
+  closeModal('buyModal');
+  if(p.kind==='file' && p.fileData) downloadProduct(p);
+  showReceipt(order.id, true);
+  refreshViews();
+}
+
+function placeOrder(p, qty, total, email, nick, promo, by=session, held=false){
+  const u = users[by];
+  // 3. Списание у покупателя
+  if(!held){ u.balance -= total; if(total) addTx(by, -total, `Покупка: ${p.title} × ${qty}`); }
+
+  // 4. Зачисление продавцу (минус комиссия)
+  const f = Math.round(total * fee());
+  if(users[p.seller] && total){
+    users[p.seller].balance += total - f;
+    addTx(p.seller, total - f, `Продажа: ${p.title} × ${qty} (комиссия ${money(f)})`);
+  }
+  settings.earned += f;
+
+  // 5. Склад и заказ
+  p.stock -= qty; p.sales += qty;
+  let delivery = '';
+  if(p.kind==='file') delivery = p.fileData ? `Файл: ${p.fileName} (скачивание началось)` : `Ссылка на скачивание: ${p.file}`;
+  else if(p.kind==='key') delivery = `Ваши ключи:\n` + Array.from({length:qty}, genKey).join('\n');
+  else delivery = p.deliver || 'Продавец свяжется с вами по email.';
+
+  const order = {
+    id:'GN-' + (Date.now().toString().slice(-7)) + Math.floor(Math.random()*10), productId:p.id, title:p.title, kind:p.kind, qty, price:priceOf(p), total, fee:f,
+    promo, buyer:by, buyerEmail:email, nick, seller:p.seller, date:Date.now(),
+    status: p.kind==='item' ? 'paid' : 'sent', delivery, chat:[]
+  };
+  orders.unshift(order);
+  notify(p.seller, `🛒 ${by} купил «${p.title}» × ${qty}${total ? ' — вам +' + money(total - f) : ''}${p.kind==='item' ? '. Отправьте товар на ' + email : ''}`, 'cabinet');
+  if(p.stock === 0) notify(p.seller, `📦 «${p.title}» закончился на складе`, 'cabinet');
+  if(!u.email) u.email = email;
+  return order;
+}
+
+function showReceipt(id, fresh=false){
+  const o = orders.find(x=>x.id===id); if(!o) return;
+  const p = products.find(x=>x.id===o.productId);
+  document.getElementById('receiptHead').textContent = fresh ? '✔ Оплата прошла' : 'Чек заказа';
+  document.getElementById('receiptText').textContent =
+`Заказ:     ${o.id}
+Товар:     ${o.title}
+Кол-во:    ${o.qty} шт.
+Списано:   ${money(o.total)}${o.promo ? ' (промокод '+o.promo+')' : ''}
+Email:     ${o.buyerEmail}
+Дата:      ${date(o.date)}
+${fresh ? 'Остаток:   ' + money(me().balance) + '\n' : ''}
+${o.delivery}
+
+${o.status==='sent' ? 'Товар выдан. Копия чека — на ' + o.buyerEmail : o.status==='refund' ? 'Заказ возвращён, деньги на кошельке.' : 'Продавец получил заказ и отправит товар на ' + o.buyerEmail}`;
+  document.getElementById('receiptDl').innerHTML = (o.kind==='file' && o.status!=='refund' && p && (p.fileData || p.file))
+    ? `<button class="btn btn-sec" style="width:100%" onclick="downloadProduct(products.find(x=>x.id===${p.id}))">⬇ Скачать снова</button>` : '';
+  openModal('receiptModal');
+}
+
+/* ================== СООБЩЕСТВО ================== */
+async function submitPost(){
+  if(needLogin()) return;
+  const title = document.getElementById('postTitle').value.trim();
+  const text = document.getElementById('postText').value.trim();
+  if(!text) return toast('Напишите текст поста','error');
+  const f = document.getElementById('postImg').files[0];
+  let img = '';
+  if(f){ if(f.size > MAX_FILE) return toast('Картинка больше 2 МБ','error'); img = await readFile(f); }
+  posts.unshift({ id:'p'+Date.now(), author:session, title, text, img, likes:[], comments:[], date:Date.now() });
+  persist();
+  document.getElementById('postTitle').value = ''; document.getElementById('postText').value = ''; document.getElementById('postImg').value = '';
+  try{ localStorage.removeItem('gn2_draft'); }catch(e){}
+  toast('Пост опубликован!'); renderFeed();
+}
+function renderFeed(){
+  const fq = document.getElementById('feedSearch').value.trim().toLowerCase();
+  const list = posts.filter(p => !fq || (p.title+' '+p.text+' '+p.author).toLowerCase().includes(fq));
+  if(document.getElementById('feedSort').value==='top') list.sort((a,b)=>(b.likes.length+b.comments.length)-(a.likes.length+a.comments.length));
+  list.sort((a,b)=>(b.pinned?1:0)-(a.pinned?1:0));
+  const box = document.getElementById('feedList');
+  if(!list.length){ box.innerHTML = '<div class="empty">Постов пока нет — будьте первым!</div>'; return; }
+  box.innerHTML = list.map(p => {
+    const liked = session && p.likes.includes(session);
+    const canDel = session===p.author || isAdmin();
+    return `
+    <div class="card post ${p.pinned?'pinned':''}" style="margin-top:14px">
+      <div class="post-head"><span>${p.pinned?'📌 ':''}<b>${esc(p.author)}</b>${roleBadge(p.author)}</span><span style="color:var(--muted)">${date(p.date)}${isAdmin() ? ` <span class="link" onclick="togglePin('${p.id}')">${p.pinned?'Открепить':'📌 Закрепить'}</span>` : ''}</span></div>
+      ${p.title ? `<h3 style="font-size:16px;margin-bottom:6px">${esc(p.title)}</h3>` : ''}
+      <p style="font-size:14px;line-height:1.5;white-space:pre-wrap">${esc(p.text)}</p>
+      ${safeUrl(p.img) ? `<img src="${esc(p.img)}" alt="">` : ''}
+      <div class="post-actions">
+        <button class="like ${liked?'on':''}" onclick="toggleLike('${p.id}')">❤ ${p.likes.length}</button>
+        <span style="color:var(--muted);font-size:13px">💬 ${p.comments.length}</span>
+        ${canDel ? `<button class="btn btn-sec btn-sm" style="margin-left:auto" onclick="deletePost('${p.id}')">Удалить</button>` : session ? `<span class="link" style="margin-left:auto;font-size:12px;color:var(--muted)" onclick="report('post','${p.id}')">⚠ Пожаловаться</span>` : ''}
+      </div>
+      ${p.comments.map((c,i)=>`<div class="comment"><b>${esc(c.by)}</b>${esc(c.text)}
+        ${session===c.by||isAdmin() ? `<span style="color:#ff6b6b;cursor:pointer;float:right" onclick="deleteComment('${p.id}',${i})">✕</span>`:''}</div>`).join('')}
+      <div class="row" style="margin-top:8px"><input id="c_${p.id}" class="form-control" maxlength="300" placeholder="Комментарий..." style="flex:3" onkeydown="if(event.key==='Enter')addComment('${p.id}')">
+        <button class="btn btn-sm" style="flex:0 0 auto" onclick="addComment('${p.id}')">➤</button></div>
+    </div>`;
+  }).join('');
+}
+function toggleLike(id){
+  if(needLogin()) return;
+  const p = posts.find(x=>x.id===id); if(!p) return;
+  const was = p.likes.includes(session);
+  p.likes = was ? p.likes.filter(x=>x!==session) : [...p.likes, session];
+  if(!was && p.author!==session) notify(p.author, `❤ ${session} лайкнул ваш пост`, 'feed');
+  persist(); renderFeed();
+}
+function addComment(id){
+  if(needLogin()) return;
+  const inp = document.getElementById('c_'+id); const text = inp.value.trim(); if(!text) return;
+  const po = posts.find(x=>x.id===id);
+  po.comments.push({ by:session, text, date:Date.now() });
+  if(po.author!==session) notify(po.author, `💬 ${session} прокомментировал ваш пост: «${text.slice(0,40)}»`, 'feed');
+  persist(); renderFeed();
+}
+function deleteComment(id, i){
+  const p = posts.find(x=>x.id===id); if(!p) return;
+  if(p.comments[i].by!==session && !isAdmin()) return;
+  p.comments.splice(i,1); persist(); renderFeed();
+}
+function deletePost(id){
+  const p = posts.find(x=>x.id===id);
+  if(!p || (p.author!==session && !isAdmin()) || !confirm('Удалить пост?')) return;
+  posts = posts.filter(x=>x.id!==id); persist(); refreshViews();
+}
+
+/* ================== ПОДДЕРЖКА ================== */
+const ticketStatus = { open:'<span class="status st-paid">ОЖИДАЕТ</span>', answered:'<span class="status st-sent">ОТВЕЧЕН</span>', closed:'<span class="status" style="color:var(--muted)">ЗАКРЫТ</span>' };
+function renderSupport(){
+  const sel = document.getElementById('ticketOrder');
+  const my = me() ? orders.filter(o=>o.buyer===session || o.seller===session) : [];
+  sel.innerHTML = '<option value="">— без заказа —</option>' + my.map(o=>`<option value="${o.id}">${o.id} • ${esc(o.title)}</option>`).join('');
+  const box = document.getElementById('myTickets');
+  if(!me()){ box.innerHTML = '<div class="empty">Войдите, чтобы видеть свои обращения</div>'; return; }
+  const list = tickets.filter(t=>t.author===session);
+  box.innerHTML = list.length ? list.map(t=>ticketCard(t,false)).join('') : '<div class="empty">У вас нет обращений</div>';
+}
+function ticketCard(t, adminView){
+  return `
+  <div class="card" style="padding:14px;margin-top:12px">
+    <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap">
+      <b>${adminView ? esc(t.author)+' • ' : ''}${esc(t.topic)}${t.order ? ' • '+esc(t.order) : ''}</b>${ticketStatus[t.status]}
+    </div>
+    <div style="display:flex;flex-direction:column">${t.msgs.map(m=>`
+      <div class="msg ${m.admin?'msg-admin':'msg-user'}"><small>${m.admin?'Поддержка GNERTI':esc(m.from)} • ${date(m.date)}</small>${esc(m.text)}</div>`).join('')}</div>
+    ${t.status!=='closed' ? `
+      <div class="row" style="margin-top:10px"><input id="tr_${t.id}" class="form-control" maxlength="1000" placeholder="${adminView?'Ответ пользователю...':'Написать ещё...'}" style="flex:3">
+        <button class="btn btn-sm" style="flex:0 0 auto" onclick="replyTicket('${t.id}',${adminView})">Отправить</button>
+        <button class="btn btn-sec btn-sm" style="flex:0 0 auto" onclick="closeTicket('${t.id}')">Закрыть</button></div>` : ''}
+  </div>`;
+}
+function sendTicket(){
+  if(needLogin()) return;
+  const text = document.getElementById('ticketText').value.trim();
+  if(!text) return toast('Опишите вопрос','error');
+  tickets.unshift({ id:'t'+Date.now(), author:session, topic:document.getElementById('ticketTopic').value, order:document.getElementById('ticketOrder').value,
+    msgs:[{ from:session, admin:false, text, date:Date.now() }], status:'open', date:Date.now() });
+  if(session!==ADMIN_LOGIN) notify(ADMIN_LOGIN, `🎫 Новый тикет от ${session}: ${document.getElementById('ticketTopic').value}`, 'admin');
+  persist(); document.getElementById('ticketText').value = '';
+  toast('Тикет отправлен!'); renderSupport();
+}
+function replyTicket(id, asAdmin){
+  const t = tickets.find(x=>x.id===id); if(!t) return;
+  const inp = document.getElementById('tr_'+id); const text = inp.value.trim(); if(!text) return;
+  const admin = asAdmin && isAdmin();
+  if(!admin && t.author!==session) return;
+  t.msgs.push({ from:session, admin, text, date:Date.now() });
+  t.status = admin ? 'answered' : 'open';
+  if(admin && t.author!==session) notify(t.author, `💬 Поддержка ответила на «${t.topic}»`, 'support');
+  persist(); toast('Отправлено'); refreshViews();
+}
+function closeTicket(id){
+  const t = tickets.find(x=>x.id===id);
+  if(!t || (t.author!==session && !isAdmin())) return;
+  t.status = 'closed'; persist(); refreshViews();
+}
+
+/* ================== ПРОФИЛЬ ================== */
+function statusBadge(s){
+  return { paid:'<span class="status st-paid">ОПЛАЧЕН</span>', sent:'<span class="status st-sent">ВЫДАН</span>', refund:'<span class="status st-ref">ВОЗВРАТ</span>' }[s] || s;
+}
+function renderCabinet(){
+  const u = me(); if(!u) return;
+  const myOrders = orders.filter(o=>o.buyer===session);
+  const mySales = orders.filter(o=>o.seller===session);
+  const myProds = products.filter(p=>p.seller===session);
+  const earned = mySales.filter(o=>o.status!=='refund').reduce((a,o)=>a+o.total-o.fee,0);
+
+  document.getElementById('avatar').textContent = session.charAt(0).toUpperCase();
+  document.getElementById('profName').innerHTML = esc(session) + roleBadge(session);
+  const L = levelOf(session);
+  document.getElementById('profSub').innerHTML = `На GNERTI с ${new Date(u.created).toLocaleDateString('ru-RU')} • подписчиков: ${followersOf(session)}<br>Уровень ${L.lvl} • ${L.xp} / ${L.next} XP<div class="xpbar" style="width:220px"><div style="width:${Math.min(100,(L.xp-L.cur)/(L.next-L.cur)*100)}%"></div></div>`;
+  document.getElementById('profEmail').value = u.email || '';
+  document.getElementById('feeTxt').textContent = settings.fee + '%';
+
+  document.getElementById('cabStats').innerHTML = `
+    <div class="stat"><small>Баланс</small><div class="pos">${money(u.balance)}</div></div>
+    <div class="stat"><small>Покупок</small><div>${myOrders.length}</div></div>
+    <div class="stat"><small>Мои товары</small><div>${myProds.length}</div></div>
+    <div class="stat"><small>Заработано</small><div>${money(earned)}</div></div>`;
+
+  document.getElementById('myOrders').innerHTML = myOrders.length ? `<table>
+    <tr><th>Заказ</th><th>Товар</th><th>Сумма</th><th>Статус</th><th>Дата</th><th></th></tr>
+    ${myOrders.map(o=>`<tr>
+      <td>${o.id}</td><td>${esc(o.title)} × ${o.qty}</td><td>${money(o.total)}</td><td>${statusBadge(o.status)}</td><td>${date(o.date)}</td>
+      <td style="white-space:nowrap">
+        <button class="btn btn-sec btn-sm" onclick="showReceipt('${o.id}')">Чек</button>
+        <button class="btn btn-sec btn-sm" onclick="openChat('${o.id}')">💬${chatNew(o)?' •':''}</button>
+        ${(() => { const rp = products.find(p=>p.id===o.productId); return rp && !rp.auction && rp.stock>0 ? `<button class="btn btn-sec btn-sm" title="Купить снова" onclick="startBuy(${rp.id})">↻</button>` : ''; })()}
+        ${o.status!=='refund' && products.some(p=>p.id===o.productId) && !reviews.some(r=>r.pid===o.productId&&r.by===session) ? `<button class="btn btn-sm" onclick="openDetails(${o.productId})">Отзыв</button>`:''}
+      </td></tr>`).join('')}</table>` : '<div class="empty">Покупок пока нет</div>';
+
+  document.getElementById('myProducts').innerHTML = myProds.length ? `<table>
+    <tr><th>Товар</th><th>Цена</th><th>Наличие</th><th>Продано</th><th></th></tr>
+    ${myProds.map(p=>`<tr>
+      <td>${esc(p.title)}</td><td>${p.price?money(priceOf(p))+(p.sale?' (−'+p.sale+'%)':''):'Бесплатно'}</td><td>${p.stock}</td><td>${p.sales}</td>
+      <td style="white-space:nowrap">
+        <button class="btn btn-sec btn-sm" onclick="openPublish(${p.id})">Изменить</button>
+        <button class="btn btn-sm" onclick="deleteProd(${p.id})">Удалить</button>
+      </td></tr>`).join('')}</table>` : '<div class="empty">Вы ещё ничего не продаёте</div>';
+
+  document.getElementById('mySales').innerHTML = mySales.length ? `<table>
+    <tr><th>Заказ</th><th>Товар</th><th>Покупатель</th><th>Email / ник</th><th>Вам</th><th>Статус</th><th></th></tr>
+    ${mySales.map(o=>`<tr>
+      <td>${o.id}</td><td>${esc(o.title)} × ${o.qty}</td><td>${esc(o.buyer)}</td>
+      <td>${esc(o.buyerEmail)}${o.nick ? '<br><small style="color:var(--muted)">'+esc(o.nick)+'</small>':''}</td>
+      <td class="pos">${money(o.total-o.fee)}</td><td>${statusBadge(o.status)}</td>
+      <td style="white-space:nowrap"><button class="btn btn-sec btn-sm" onclick="openChat('${o.id}')">💬${chatNew(o)?' •':''}</button>${o.status==='paid' ? `
+        <button class="btn btn-sm" onclick="markSent('${o.id}')">Отправил</button>
+        <button class="btn btn-sec btn-sm" onclick="refund('${o.id}')">Возврат</button>`:''}</td></tr>`).join('')}</table>`
+    : '<div class="empty">Продаж пока нет</div>';
+
+  const myTx = txs.filter(t=>t.login===session).slice(0,30);
+  document.getElementById('myTx').innerHTML = myTx.length ? `<table>
+    <tr><th>Дата</th><th>Операция</th><th>Сумма</th><th>Баланс</th></tr>
+    ${myTx.map(t=>`<tr><td>${date(t.date)}</td><td>${esc(t.note)}</td>
+      <td class="${t.amount<0?'neg':'pos'}">${t.amount>0?'+':''}${money(t.amount)}</td><td>${money(t.balance)}</td></tr>`).join('')}</table>`
+    : '<div class="empty">Операций нет</div>';
+}
+async function changePass(){
+  const u = me(); const o = document.getElementById('pwOld').value, n = document.getElementById('pwNew').value;
+  if(await sha256(o) !== u.hash) return toast('Старый пароль неверный','error');
+  if(session === ADMIN_LOGIN) return toast('Пароль админа задаётся в коде (ADMIN_HASH)','error');
+  if(n.length < 6) return toast('Новый пароль минимум 6 символов','error');
+  u.hash = await sha256(n); persist();
+  document.getElementById('pwOld').value = ''; document.getElementById('pwNew').value = '';
+  toast('Пароль изменён');
+}
+function saveEmail(){
+  const e = document.getElementById('profEmail').value.trim();
+  if(e && !validEmail(e)) return toast('Неверный email','error');
+  me().email = e; persist(); toast('Email сохранён');
+}
+function usePromo(){ usePromoCode(document.getElementById('promoInput').value.trim().toUpperCase()); }
+function usePromoCode(code){
+  const u = me(); if(!u) return;
+  if(codes.some(c=>c.code===code)){ openWallet('code'); document.getElementById('wCode').value = code; return redeemCode(); }
+  const pr = promos.find(x=>x.code===code);
+  if(!pr) return toast('Такого промокода нет','error');
+  if(pr.kind!=='balance') return toast('Это промокод на скидку — введите его при покупке','error');
+  if(pr.used.includes(session)) return toast('Вы уже использовали этот промокод','error');
+  if(pr.limit && pr.used.length >= pr.limit) return toast('Промокод закончился','error');
+  u.balance += pr.value; pr.used.push(session);
+  addTx(session, pr.value, `Промокод ${code}`);
+  persist(); const pi = document.getElementById('promoInput'); if(pi) pi.value = '';
+  toast(`+${money(pr.value)} на кошелёк!`); refreshViews();
+}
+function markSent(id){
+  const o = orders.find(x=>x.id===id);
+  if(!o || (o.seller!==session && !isAdmin())) return;
+  o.status = 'sent'; notify(o.buyer, `📬 Продавец отправил «${o.title}» на ${o.buyerEmail}`, 'cabinet');
+  persist(); toast('Заказ отмечен как отправленный'); refreshViews();
+}
+function refund(id){
+  const o = orders.find(x=>x.id===id);
+  if(!o || o.status==='refund' || (o.seller!==session && !isAdmin())) return;
+  if(!confirm(`Вернуть ${money(o.total)} покупателю ${o.buyer}?`)) return;
+  if(users[o.seller] && o.total){ users[o.seller].balance -= o.total - o.fee; addTx(o.seller, -(o.total - o.fee), `Возврат заказа ${o.id}`); }
+  settings.earned -= o.fee;
+  if(users[o.buyer] && o.total){ users[o.buyer].balance += o.total; addTx(o.buyer, o.total, `Возврат заказа ${o.id}`); }
+  const p = products.find(x=>x.id===o.productId);
+  if(p){ p.stock += o.qty; p.sales -= o.qty; }
+  o.status = 'refund';
+  notify(o.buyer, `↩ Возврат по заказу ${o.id}: +${money(o.total)} на кошелёк`, 'cabinet');
+  persist(); toast('Деньги возвращены покупателю'); refreshViews();
+}
+function deleteProd(id){
+  const p = products.find(x=>x.id===id);
+  if(!p || (p.seller!==session && !isAdmin())) return;
+  if(!confirm(`Удалить «${p.title}»?`)) return;
+  if(p.auction && !p.auction.done && p.auction.bids.length){
+    const top = p.auction.bids[p.auction.bids.length-1];
+    if(users[top.by]){ users[top.by].balance += top.amount; addTx(top.by, top.amount, `Аукцион «${p.title}» отменён — возврат ставки`); notify(top.by, `↩ Аукцион «${p.title}» отменён, ставка ${money(top.amount)} возвращена`, 'cabinet'); }
+  }
+  products = products.filter(x=>x.id!==id);
+  persist(); toast('Товар удалён','error'); refreshViews();
+}
+
+/* ================== КОШЕЛЁК: ПОПОЛНЕНИЕ / ПЕРЕВОД ================== */
+const PACKS = [100, 250, 500, 1000, 2500, 5000];
+let wAmt = 0, wMeth = '', wCodeId = '';
+function today(){ return new Date().toISOString().slice(0,10); }
+function openWallet(tab='top'){
+  if(needLogin()) return;
+  showTab('wallet'); walletTab(tab);
+}
+const W_TABS = ['top','code','send','out','hist'];
+function walletTab(t){
+  W_TABS.forEach(x=>{
+    document.getElementById('w-'+x).classList.toggle('hidden', x!==t);
+    document.getElementById('wt-'+x).classList.toggle('on', x===t);
+  });
+  document.getElementById('wTitle').textContent = { top:'Пополнение кошелька GNERTI', code:'Код пополнения', send:'Перевод средств', out:'Вывод средств', hist:'История кошелька' }[t];
+  hideErr('walletErr');
+  if(t==='top'){
+    document.getElementById('wPacks').innerHTML = PACKS.map(v=>`
+      <div class="pack"><div style="flex:1"><b>Пополнить кошелёк на ${money(v)}</b><small>${v>=1000 ? 'Популярный выбор' : 'Зачисление на кошелёк GNERTI'}</small></div>
+      <div class="amt">${money(v)}</div><button class="btn btn-buy" onclick="chooseAmount(${v})">Пополнить</button></div>`).join('');
+    wStep(1);
+  }
+  renderWallet();
+  if(t==='send') prepTransfer();
+}
+function wStep(n){
+  [1,2,3,4].forEach(i => document.getElementById('wStep'+i).classList.toggle('hidden', i!==n));
+  document.getElementById('wSteps').innerHTML = ['Сумма','Способ оплаты','Подтверждение','Готово'].map((t,i)=>`<div class="${i+1<n?'done':i+1===n?'cur':''}">${i+1}. ${t}</div>`).join('');
+  hideErr('walletErr'); window.scrollTo({ top:0, behavior:'smooth' });
+}
+function payMethods(){
+  const ms = [];
+  if(settings.monoFn) ms.push(['mono','🐈‍⬛','Monobank: карта, Apple Pay, Google Pay','Оплата на защищённой странице monobank — деньги придут автоматически']);
+  if(settings.payLink || settings.payInfo) ms.push(['pay','💳','Банковская карта / Monobank / Privat24','Оплата по ссылке, зачисление после проверки (обычно в течение дня)']);
+  ms.push(['code','🎟','Код пополнения GNERTI','Сумма зачислится сразу после ввода кода']);
+  if(settings.demoTopup) ms.push(['demo','⚡',`Демо-деньги (до ${money(settings.demoLimit)} в день)`,'Для теста, зачисляются мгновенно']);
+  return ms;
+}
+function chooseAmount(v){
+  v = Math.round(v);
+  if(!(v >= 10)) return showErr('walletErr','Минимальная сумма пополнения 10 ₴');
+  if(v > 100000) return showErr('walletErr','Максимум 100 000 ₴ за раз');
+  wAmt = v; wCodeId = 'GN-' + Math.random().toString(36).slice(2,8).toUpperCase();
+  const ms = payMethods();
+  if(!ms.some(m=>m[0]===wMeth)) wMeth = ms[0][0];
+  renderMethods(); wStep(2);
+}
+function renderMethods(){
+  document.getElementById('wMethods').innerHTML = payMethods().map(m=>`<label class="method ${m[0]===wMeth?'on':''}" onclick="wMeth='${m[0]}';renderMethods()">
+    <input type="radio" name="wm" ${m[0]===wMeth?'checked':''} style="accent-color:var(--red)"><span style="font-size:22px">${m[1]}</span><div><b>${m[2]}</b><small>${m[3]}</small></div></label>`).join('')
+    + `<div class="summary" style="margin-top:10px"><div><span>Сумма пополнения</span><b>${money(wAmt)}</b></div></div>`;
+}
+function wContinue(){
+  if(wMeth==='code'){ walletTab('code'); document.getElementById('wCode').focus(); return; }
+  const m = payMethods().find(x=>x[0]===wMeth);
+  document.getElementById('wReview').innerHTML = `<div class="summary"><table class="review-table" style="margin:0">
+    <tr><td>Товар</td><td>Пополнение кошелька GNERTI</td></tr>
+    <tr><td>Аккаунт</td><td>${esc(session)}</td></tr>
+    <tr><td>Способ оплаты</td><td>${m[1]} ${m[2]}</td></tr>
+    <tr><td>Текущий баланс</td><td>${money(me().balance)}</td></tr>
+    <tr><td>Баланс после пополнения</td><td class="pos">${money(me().balance + wAmt)}</td></tr>
+    <tr><td style="font-size:16px"><b>Итого к оплате</b></td><td style="font-size:20px;color:var(--title)">${money(wAmt)}</td></tr></table></div>`;
+  const box = document.getElementById('wPayBox');
+  const isMono = wMeth==='mono';
+  document.querySelector('#wStep3 .agree').classList.toggle('hidden', isMono);
+  document.getElementById('wPayBtn').classList.toggle('hidden', isMono);
+  if(isMono){
+    box.innerHTML = `<div class="review" style="font-size:13px;line-height:1.6;margin-top:10px">Нажмите кнопку monobank ниже. Номер карты, срок и CVV вводятся <b>на защищённой странице monobank</b> — сайт GNERTI их не видит. После оплаты деньги придут на кошелёк автоматически.</div>
+      <div id="payment-container" style="margin-top:12px;min-height:50px;display:flex;justify-content:center"></div>
+      <div id="monoStatus" style="text-align:center;font-size:12px;color:var(--muted);margin-top:6px">Загружаю кнопку оплаты...</div>`;
+    wStep(3); startMonoPay(); return;
+  }
+  if(wMeth==='pay'){
+    box.innerHTML = `<div class="review" style="font-size:13px;line-height:1.7;margin-top:10px">
+      <b>1.</b> Нажмите «Перейти к оплате» и оплатите ровно <b>${money(wAmt)}</b>.<br>
+      <b>2.</b> В комментарии к платежу обязательно укажите код:
+      <div class="paycode" title="Нажмите, чтобы скопировать" onclick="navigator.clipboard&&navigator.clipboard.writeText('${wCodeId}').then(()=>toast('Код скопирован'))">${wCodeId}</div>
+      <b>3.</b> Поставьте галочку ниже и нажмите «Я оплатил».
+      ${settings.payInfo ? `<div style="margin-top:8px;color:var(--muted);white-space:pre-wrap">${esc(settings.payInfo)}</div>` : ''}</div>
+      ${safeLink(settings.payLink) ? `<a class="btn btn-sec" style="display:block;text-align:center;margin-top:8px;text-decoration:none" href="${esc(settings.payLink)}" target="_blank" rel="noopener">Перейти к оплате ↗</a>` : ''}`;
+    document.getElementById('wAgreeTxt').textContent = `Я оплатил ${money(wAmt)} и указал код ${wCodeId} в комментарии к платежу.`;
+    document.getElementById('wPayBtn').textContent = 'Я оплатил';
+  } else {
+    box.innerHTML = '';
+    document.getElementById('wAgreeTxt').textContent = 'Я подтверждаю пополнение кошелька GNERTI. Средства на кошельке не возвращаются на карту, но их можно тратить на сайте.';
+    document.getElementById('wPayBtn').textContent = `Купить — ${money(wAmt)}`;
+  }
+  document.getElementById('wAgree').checked = false;
+  wStep(3);
+}
+/* ---- Monobank Pay: кнопка (подпись делает серверная функция, деньги зачисляет вебхук) ---- */
+function loadMonoScript(){
+  return new Promise((res, rej) => {
+    if(window.MonoPay) return res();
+    let el = document.getElementById('monopay-script');
+    if(!el){ el = document.createElement('script'); el.id = 'monopay-script'; el.src = 'https://pay.monobank.ua/mono-pay-button/v1/mono-pay-button.js'; document.head.appendChild(el); }
+    el.addEventListener('load', () => res()); el.addEventListener('error', () => rej(new Error('Не удалось загрузить скрипт monobank')));
+    setTimeout(() => window.MonoPay ? res() : rej(new Error('Скрипт monobank не загрузился')), 10000);
+  });
+}
+async function startMonoPay(){
+  const st = document.getElementById('monoStatus');
+  try{
+    if(!sync.on) throw new Error('Для оплаты через monobank включите онлайн-режим (Админка → 🌐 Онлайн)');
+    const [, cfg] = await Promise.all([loadMonoScript(), fetch(settings.monoFn, {
+      method:'POST', headers:{ 'Content-Type':'application/json', apikey:SB.key, Authorization:'Bearer ' + SB.key },
+      body: JSON.stringify({ action:'button', login:session, amount:wAmt })
+    }).then(async r => { const j = await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.error || ('Ошибка сервера ' + r.status)); return j; })]);
+    try{ window.MonoPay.destroy(); }catch(e){}
+    const { button } = window.MonoPay.init({
+      keyId: cfg.keyId, signature: cfg.signature, requestId: cfg.requestId, payloadBase64: cfg.payloadBase64,
+      callbacks: {
+        onButtonReady(){ st.textContent = `К оплате ${money(wAmt)}`; },
+        onSuccess(){ monoPaid(cfg.reference); },
+        onError(e){ st.innerHTML = `<span class="neg">Оплата не прошла: ${esc((e && (e.message || e.errText)) || 'ошибка')}</span>`; }
+      }
+    });
+    const box = document.getElementById('payment-container'); box.innerHTML = ''; box.appendChild(button);
+  }catch(e){ st.innerHTML = `<span class="neg">${esc(e.message || e)}</span>`; }
+}
+function monoPaid(ref){
+  document.getElementById('wDone').innerHTML = `<div class="done-box"><div class="big">✅</div><h3>Оплата прошла!</h3>
+    <p style="color:var(--muted);margin:8px 0 16px">Monobank подтвердил платёж на <b>${money(wAmt)}</b>. Деньги появятся на кошельке через несколько секунд — придёт уведомление 🔔.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn btn-buy" onclick="showTab('market')">В магазин</button><button class="btn btn-sec" onclick="walletTab('top')">Пополнить ещё</button></div></div>`;
+  wStep(4);
+  let n = 0; const t = setInterval(() => { syncTick(); if(++n > 10) clearInterval(t); }, 3000);
+}
+function safeLink(u){ return /^https:\/\//i.test(u||'') ? u : ''; }
+function demoUsedToday(){
+  return txs.filter(t=>t.login===session && t.kind==='demo' && new Date(t.date).toISOString().slice(0,10)===today()).reduce((a,t)=>a+t.amount,0);
+}
+function renderWallet(){
+  const u = me(); if(!u) return;
+  document.getElementById('wBal').textContent = money(u.balance);
+  document.getElementById('wUser').textContent = session;
+  const pend = topups.filter(t=>t.user===session && t.status==='pending');
+  const pin = pend.filter(t=>t.type!=='out').reduce((a,t)=>a+t.amount,0), pout = pend.filter(t=>t.type==='out').reduce((a,t)=>a+t.amount,0);
+  document.getElementById('wPending').innerHTML = (pin ? `🕓 Ожидает зачисления: ${money(pin)}<br>` : '') + (pout ? `⇩ На выводе: ${money(pout)}` : '');
+  const mine = topups.filter(t=>t.user===session).slice(0,5);
+  document.getElementById('wReqs').classList.toggle('hidden', !mine.length);
+  document.getElementById('wReqs').innerHTML = mine.length ? `<div style="font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:4px">Мои заявки</div>` +
+    mine.map(t=>`<div class="review" style="display:flex;justify-content:space-between;gap:8px;font-size:12px"><span>${t.type==='out'?'⇩':'＋'} ${money(t.amount)}${t.code?'<br><small style="color:var(--muted)">'+esc(t.code)+'</small>':''}</span>${topStatus[t.status]}</div>`).join('') : '';
+  const h = txs.filter(t=>t.login===session).slice(0,40);
+  document.getElementById('wHist').innerHTML = h.length ? `<table><tr><th>Дата</th><th>Операция</th><th>Сумма</th></tr>${h.map(t=>`<tr><td>${date(t.date)}</td><td>${esc(t.note)}</td><td class="${t.amount<0?'neg':'pos'}">${t.amount>0?'+':''}${money(t.amount)}</td></tr>`).join('')}</table>` : '<div class="empty">Операций пока нет</div>';
+}
+const topStatus = { pending:'<span class="status st-paid">ПРОВЕРКА</span>', approved:'<span class="status st-sent">ЗАЧИСЛЕНО</span>', rejected:'<span class="status st-ref">ОТКЛОНЕНО</span>' };
+
+function doTopup(){
+  const u = me(); hideErr('walletErr');
+  if(!(wAmt >= 10)) return wStep(1);
+  if(!document.getElementById('wAgree').checked) return showErr('walletErr', wMeth==='pay' ? 'Отметьте галочку, что оплата сделана' : 'Подтвердите покупку галочкой');
+  let html;
+  if(wMeth==='demo'){
+    const left = settings.demoLimit - demoUsedToday();
+    if(wAmt > left) return showErr('walletErr', left > 0 ? `Сегодня демо-пополнение доступно ещё на ${money(left)}` : 'Дневной лимит демо-пополнения исчерпан');
+    u.balance += wAmt; addTx(session, wAmt, 'Пополнение (демо)', 'demo');
+    html = `<div class="done-box"><div class="big">✅</div><h3>Спасибо за покупку!</h3>
+      <p style="color:var(--muted);margin:8px 0 16px">На ваш кошелёк зачислено <b class="pos">${money(wAmt)}</b>. Баланс: <b>${money(u.balance)}</b></p>`;
+  } else {
+    if(topups.filter(t=>t.user===session && t.status==='pending' && t.type!=='out').length >= 3) return showErr('walletErr','У вас уже 3 заявки на проверке — дождитесь ответа администратора');
+    topups.unshift({ id:'tp'+Date.now(), user:session, amount:wAmt, code:wCodeId, note:'Код в комментарии: ' + wCodeId, status:'pending', date:Date.now() });
+    notify(ADMIN_LOGIN, `🧾 ${session}: пополнение ${money(wAmt)}, код ${wCodeId} — проверьте платёж`, 'admin');
+    html = `<div class="done-box"><div class="big">🕓</div><h3>Платёж на проверке</h3>
+      <p style="color:var(--muted);margin:8px 0 6px">Заявка <b style="color:var(--red)">${wCodeId}</b> на <b>${money(wAmt)}</b> отправлена.</p>
+      <p style="color:var(--muted);margin-bottom:16px">Как только администратор увидит платёж, деньги придут на кошелёк, а вам — уведомление 🔔.</p>`;
+  }
+  persist();
+  document.getElementById('wDone').innerHTML = html + `<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+    <button class="btn btn-buy" onclick="showTab('market')">В магазин</button><button class="btn btn-sec" onclick="walletTab('top')">Пополнить ещё</button></div></div>`;
+  wStep(4); renderWallet(); renderUserMenu();
+  if(sync.on) syncTick();
+}
+function redeemCode(){
+  const u = me(); hideErr('walletErr');
+  const raw = document.getElementById('wCode').value.trim().toUpperCase();
+  if(!raw) return showErr('walletErr','Введите код');
+  const c = codes.find(x=>x.code===raw);
+  if(c){
+    if(c.used) return showErr('walletErr', c.used===session ? 'Вы уже активировали этот код' : 'Этот код уже использован');
+    c.used = session; c.usedAt = Date.now();
+    u.balance += c.amount; addTx(session, c.amount, `Код пополнения ${c.code}`);
+    notify(ADMIN_LOGIN, `🎟 ${session} активировал код на ${money(c.amount)}`, 'admin');
+    persist(); document.getElementById('wCode').value = '';
+    toast(`🎉 +${money(c.amount)} на кошелёк!`); renderWallet(); refreshViews(); return;
+  }
+  const pr = promos.find(x=>x.code===raw && x.kind==='balance');
+  if(pr){ document.getElementById('promoInput') && (document.getElementById('promoInput').value = raw); usePromoCode(raw); document.getElementById('wCode').value = ''; renderWallet(); return; }
+  showErr('walletErr','Код не найден. Проверьте, правильно ли он введён');
+}
+function prepTransfer(){
+  const others = Object.keys(users).filter(l => l!==session && users[l].hash!==null && !users[l].banned);
+  document.getElementById('wUsers').innerHTML = others.map(l=>`<option value="${esc(l)}">`).join('');
+  const recent = [...new Set(txs.filter(t=>t.login===session && t.peer).map(t=>t.peer))].filter(l=>users[l]).slice(0,6);
+  document.getElementById('wRecent').innerHTML = recent.length ? '<span style="font-size:11px;color:var(--muted)">Недавние: </span>' + recent.map(l=>`<span class="chipbtn" onclick="wTo.value='${esc(l)}';checkRecipient()">${esc(l)}</span>`).join('') : '';
+  checkRecipient();
+}
+function checkRecipient(){
+  const to = document.getElementById('wTo').value.trim();
+  const amt = Math.round(parseFloat(document.getElementById('wSendAmt').value)) || 0;
+  const info = document.getElementById('wToInfo'), u = me();
+  const ok = users[to] && users[to].hash!==null && to!==session && !users[to].banned;
+  info.innerHTML = !to ? '' : ok ? `<span class="pos">✔ ${esc(to)} найден • уровень ${levelOf(to).lvl}</span>`
+    : to===session ? '<span class="neg">Нельзя перевести самому себе</span>'
+    : users[to] && users[to].banned ? '<span class="neg">Игрок заблокирован</span>'
+    : `<span class="neg">✗ Игрок не найден.</span>${sync.on ? '' : ' <span style="color:var(--muted)">Если он регистрировался на другом компьютере — нужен онлайн-режим (Админка → 🌐 Онлайн).</span>'}`;
+  document.getElementById('wSendSum').innerHTML = `
+    <div><span>Перевод</span><span>${money(amt)}</span></div>
+    <div><span>Комиссия</span><span class="pos">0 ₴</span></div>
+    <div class="total"><span>Останется у вас</span><span class="${u.balance-amt<0?'neg':'pos'}">${money(u.balance-amt)}</span></div>`;
+  document.getElementById('wSendBtn').disabled = !ok || !(amt>=1) || amt > u.balance;
+  document.getElementById('wSendBtn').textContent = ok && amt ? `Перевести ${money(amt)} → ${to}` : 'Перевести';
+}
+function doTransfer(){
+  const u = me(); hideErr('walletErr');
+  const to = document.getElementById('wTo').value.trim();
+  const amt = Math.round(parseFloat(document.getElementById('wSendAmt').value));
+  const note = document.getElementById('wSendNote').value.trim();
+  if(!users[to] || users[to].hash===null) return showErr('walletErr','Игрок не найден');
+  if(to === session) return showErr('walletErr','Нельзя перевести самому себе');
+  if(users[to].banned) return showErr('walletErr','Этот игрок заблокирован');
+  if(!(amt >= 1)) return showErr('walletErr','Введите сумму');
+  if(u.balance < amt) return showErr('walletErr',`Недостаточно средств! На кошельке ${money(u.balance)}`);
+  if(amt > 50000) return showErr('walletErr','Максимум 50 000 ₴ за один перевод');
+  if(!confirm(`Перевести ${money(amt)} игроку ${to}?${note ? '\nСообщение: ' + note : ''}`)) return;
+  u.balance -= amt; addTx(session, -amt, `Перевод → ${to}${note?': '+note:''}`, 'transfer', to);
+  users[to].balance += amt; addTx(to, amt, `Перевод от ${session}${note?': '+note:''}`, 'transfer', session);
+  notify(to, `💸 ${session} перевёл вам ${money(amt)}${note?': '+note:''}`, 'cabinet');
+  persist(); toast(`Переведено ${money(amt)} → ${to}`);
+  document.getElementById('wSendAmt').value = ''; document.getElementById('wSendNote').value = '';
+  renderWallet(); refreshViews(); prepTransfer();
+  if(sync.on) syncTick();
+}
+
+/* ================== ОНЛАЙН-СИНХРОНИЗАЦИЯ (Supabase) ================== */
+const SB = (() => { const o = load('gn2_sb', null); return { url:(o&&o.url)||SB_URL, key:(o&&o.key)||SB_KEY }; })();
+const COLS = {
+  users:   { obj:true },
+  settings:{ single:true },
+  products:{ key:p=>String(p.id) }, orders:{ key:o=>o.id, date:true }, txs:{ key:t=>String(t.id), date:true },
+  reviews: { key:r=>r.id, date:true }, posts:{ key:p=>p.id, date:true }, tickets:{ key:t=>t.id, date:true },
+  promos:  { key:p=>p.code }, topups:{ key:t=>t.id, date:true }, notifs:{ key:n=>n.id, date:true },
+  reports: { key:r=>r.id, date:true }, cats:{ key:c=>c.id }, codes:{ key:c=>c.code, date:true }
+};
+const sync = { on:false, ready:false, synced:{}, lastPull:'1970-01-01T00:00:00Z', timer:null, busy:false, err:'' };
+function colGet(c){ return ({users, settings, products, orders, txs, reviews, posts, tickets, promos, topups, notifs, reports, cats, codes})[c]; }
+function colSet(c, v){
+  if(c==='products') products = v; else if(c==='orders') orders = v; else if(c==='txs') txs = v; else if(c==='reviews') reviews = v;
+  else if(c==='posts') posts = v; else if(c==='tickets') tickets = v; else if(c==='promos') promos = v; else if(c==='topups') topups = v;
+  else if(c==='notifs') notifs = v; else if(c==='reports') reports = v; else if(c==='cats') cats = v; else if(c==='codes') codes = v;
+}
+function colMap(c){
+  const def = COLS[c], v = colGet(c), m = {};
+  if(def.single) m.main = v;
+  else if(def.obj) Object.entries(v).forEach(([k,x]) => m[k] = x);
+  else v.forEach(x => m[def.key(x)] = x);
+  return m;
+}
+async function sbFetch(path, opt={}){
+  const res = await fetch(SB.url.replace(/\/$/,'') + '/rest/v1/' + path, Object.assign({}, opt, {
+    headers: Object.assign({ apikey:SB.key, Authorization:'Bearer ' + SB.key, 'Content-Type':'application/json' }, opt.headers||{}) }));
+  if(!res.ok){ const t = await res.text(); throw new Error(res.status + ' ' + t.slice(0,160)); }
+  return res.status === 204 || opt.method==='POST' ? null : res.json();
+}
+function applyRemote(rows){
+  let changed = false;
+  const touched = new Set();
+  rows.forEach(row => {
+    const def = COLS[row.col]; if(!def) return;
+    const sy = sync.synced[row.col] = sync.synced[row.col] || {};
+    const js = row.deleted ? null : JSON.stringify(row.data);
+    if(sy[row.id] === js) return;
+    sy[row.id] = js; changed = true; touched.add(row.col);
+    if(def.single){ if(!row.deleted) settings = Object.assign(settings, row.data); return; }
+    if(def.obj){ if(row.deleted) delete users[row.id]; else users[row.id] = row.data; return; }
+    const arr = colGet(row.col), i = arr.findIndex(x => def.key(x) === row.id);
+    if(row.deleted){ if(i>=0) arr.splice(i,1); }
+    else if(i>=0) arr[i] = row.data; else arr.push(row.data);
+  });
+  touched.forEach(c => { if(COLS[c].date) colGet(c).sort((a,b)=>(b.date||0)-(a.date||0)); });
+  if(touched.has('users')) Object.values(users).forEach(u => { u.role = u.role || 'user'; });
+  if(users[ADMIN_LOGIN]){ users[ADMIN_LOGIN].hash = ADMIN_HASH; users[ADMIN_LOGIN].role = 'admin'; }
+  if(touched.has('txs') || touched.has('users')) recalcBalances();
+  return changed;
+}
+async function syncPull(full=false){
+  const since = full ? '1970-01-01T00:00:00Z' : new Date(new Date(sync.lastPull).getTime() - 5000).toISOString();
+  let all = [], from = 0;
+  while(true){
+    const rows = await sbFetch(`gn_records?select=col,id,data,deleted,updated_at&updated_at=gte.${encodeURIComponent(since)}&order=updated_at.asc`,
+      { headers:{ Range:`${from}-${from+999}`, 'Range-Unit':'items' } });
+    all = all.concat(rows);
+    if(rows.length < 1000) break;
+    from += 1000;
+  }
+  all.forEach(r => { if(r.updated_at > sync.lastPull) sync.lastPull = r.updated_at; });
+  return applyRemote(all);
+}
+async function syncPush(){
+  const rows = [];
+  Object.keys(COLS).forEach(c => {
+    const m = colMap(c), sy = sync.synced[c] = sync.synced[c] || {};
+    Object.entries(m).forEach(([id, x]) => { const js = JSON.stringify(x); if(sy[id] !== js){ rows.push({ col:c, id, data:x, deleted:false }); sy[id] = js; } });
+    Object.keys(sy).forEach(id => { if(!(id in m) && sy[id] !== null){ rows.push({ col:c, id, data:null, deleted:true }); sy[id] = null; } });
+  });
+  for(let i = 0; i < rows.length; i += 100)
+    await sbFetch('gn_records?on_conflict=col,id', { method:'POST', headers:{ Prefer:'resolution=merge-duplicates,return=minimal' }, body:JSON.stringify(rows.slice(i, i+100)) });
+  return rows.length;
+}
+function syncSchedule(){
+  if(!sync.on || !sync.ready) return;
+  clearTimeout(sync.timer);
+  sync.timer = setTimeout(syncTick, 150);
+}
+async function syncTick(){
+  if(!sync.on || !sync.ready || sync.busy) return;
+  sync.busy = true;
+  try{
+    const changed = await syncPull();
+    if(changed) saveLocalOnly();
+    await syncPush();
+    sync.err = '';
+    if(changed) remoteRefresh();
+  }catch(e){ sync.err = String(e.message||e); }
+  sync.busy = false; renderSyncDot();
+}
+function saveLocalOnly(){ const on = sync.on; sync.on = false; persist(); sync.on = on; }
+function remoteRefresh(){
+  const a = document.activeElement;
+  if(a && /input|textarea|select/i.test(a.tagName) && a.closest('#tab-' + curTab)) { renderUserMenu(); return; }
+  if(session && (!users[session] || users[session].banned)){ session = null; save('gn2_session', null); }
+  fillCategorySelects(); refreshViews(); renderCmpBar();
+  if(document.getElementById('detModal').style.display==='flex' && detId && products.some(p=>p.id===detId) && !document.getElementById('detBody').querySelector('table')) renderDetails();
+  if(document.getElementById('chatModal').style.display==='flex' && chatId) renderChat();
+}
+async function syncStart(){
+  if(!SB.url || !SB.key){ sync.on = false; renderSyncDot(); return; }
+  if(sync.starting) return; sync.starting = true;
+  sync.on = true; sync.ready = false; sync.synced = {}; sync.err = ''; renderSyncDot();
+  try{
+    await syncPull(true);
+    saveLocalOnly();
+    sync.ready = true;
+    const pushed = await syncPush();
+    remoteRefresh();
+    if(pushed) console.log('GNERTI sync: отправлено записей', pushed);
+  }catch(e){ sync.err = String(e.message||e); sync.ready = false; }
+  sync.starting = false; renderSyncDot();
+}
+setInterval(() => { if(sync.on && sync.ready) syncTick(); else if(sync.on && !sync.ready && !sync.starting) syncStart(); }, 4000);
+function renderSyncDot(){
+  const el = document.getElementById('syncDot'); if(!el) return;
+  el.innerHTML = !sync.on ? '<span style="color:var(--muted)">● Офлайн (данные в этом браузере)</span>'
+    : sync.err ? `<span class="neg" title="${esc(sync.err)}">● Нет связи с сервером</span>`
+    : sync.ready ? '<span class="pos">● Онлайн</span>' : '<span style="color:var(--warn)">● Подключение...</span>';
+  const ad = document.getElementById('syncDotAdmin'); if(ad) ad.innerHTML = el.innerHTML;
+}
+async function sbConnect(){
+  const url = document.getElementById('sbUrl').value.trim(), key = document.getElementById('sbKey').value.trim();
+  if(!/^https:\/\/.+\.supabase\.co\/?$/.test(url)) return toast('Ссылка вида https://xxxx.supabase.co','error');
+  if(key.length < 30) return toast('Вставьте anon public key целиком','error');
+  SB.url = url; SB.key = key;
+  try{ await sbFetch('gn_records?select=id&limit=1'); }
+  catch(e){ return toast(/42P01|does not exist|relation/.test(e.message) ? 'Таблица не найдена — сначала выполните SQL-скрипт' : 'Ошибка: ' + e.message,'error'); }
+  save('gn2_sb', { url, key });
+  toast('Подключено! Загружаю данные...'); await syncStart(); renderAdmin();
+}
+function sbDisconnect(){
+  if(!confirm('Отключить онлайн в этом браузере? Данные останутся на сервере.')) return;
+  try{ localStorage.removeItem('gn2_sb'); }catch(e){}
+  SB.url = SB_URL; SB.key = SB_KEY; sync.on = false; sync.ready = false; renderSyncDot(); renderAdmin();
+}
+const SB_SQL = `create table if not exists gn_records (
+  col text not null,
+  id text not null,
+  data jsonb,
+  deleted boolean not null default false,
+  updated_at timestamptz not null default now(),
+  primary key (col, id)
+);
+create index if not exists gn_records_updated on gn_records (updated_at);
+
+create or replace function gn_touch() returns trigger as $$
+begin new.updated_at = now(); return new; end $$ language plpgsql;
+drop trigger if exists gn_touch on gn_records;
+create trigger gn_touch before insert or update on gn_records
+  for each row execute function gn_touch();
+
+alter table gn_records enable row level security;
+drop policy if exists gn_read on gn_records;
+drop policy if exists gn_insert on gn_records;
+drop policy if exists gn_update on gn_records;
+create policy gn_read   on gn_records for select using (true);
+create policy gn_insert on gn_records for insert with check (true);
+create policy gn_update on gn_records for update using (true);`;
+
+/* ================== УДОБСТВО ================== */
+let cmpList = [];
+function toggleCmp(id){
+  const i = cmpList.indexOf(id);
+  if(i>=0) cmpList.splice(i,1);
+  else { if(cmpList.length >= 4) return toast('Сравнивать можно до 4 товаров','error'); cmpList.push(id); }
+  renderCmpBar(); renderProducts();
+}
+function renderCmpBar(){
+  let bar = document.getElementById('cmpBar');
+  cmpList = cmpList.filter(id=>products.some(p=>p.id===id));
+  if(!cmpList.length){ if(bar) bar.remove(); return; }
+  if(!bar){ bar = document.createElement('div'); bar.id = 'cmpBar'; document.body.appendChild(bar); }
+  bar.innerHTML = `⚖ Выбрано: ${cmpList.length} <button class="btn btn-sm" onclick="openCompare()">Сравнить</button><button class="btn btn-sec btn-sm" onclick="cmpList=[];renderCmpBar();renderProducts()">✕</button>`;
+}
+function openCompare(){
+  const ps = cmpList.map(id=>products.find(p=>p.id===id)).filter(Boolean);
+  const best = (fn, low) => { const v = ps.map(fn); const b = low ? Math.min(...v) : Math.max(...v); return v.map(x => x===b && ps.length>1); };
+  const prices = ps.map(p=>p.auction?aucCur(p):priceOf(p)), cheapest = best(p=>p.auction?aucCur(p):priceOf(p), true), topRate = best(p=>rating(p.id)), topSales = best(p=>p.sales);
+  const row = (name, cells) => `<tr><th>${name}</th>${cells.join('')}</tr>`;
+  document.getElementById('detBody').innerHTML = `<h3 style="margin-bottom:10px">⚖ Сравнение товаров</h3><div class="table-wrap"><table>
+    ${row('Товар', ps.map(p=>`<td><span class="link" onclick="openDetails(${p.id})">${esc(p.title)}</span></td>`))}
+    ${row('Цена', ps.map((p,i)=>`<td class="${cheapest[i]?'pos':''}"><b>${money(prices[i])}</b>${p.sale?' <small>(−'+p.sale+'%)</small>':''}${p.auction?' <small>(аукцион)</small>':''}</td>`))}
+    ${row('Категория', ps.map(p=>`<td>${esc(catOf(p.cat).icon)} ${esc(catOf(p.cat).name)}</td>`))}
+    ${row('Получение', ps.map(p=>`<td>${{file:'Файл',key:'Ключ',item:'От продавца'}[p.kind]}</td>`))}
+    ${row('Рейтинг', ps.map((p,i)=>`<td class="${topRate[i]&&rating(p.id)?'pos':''}">${prodReviews(p.id).length ? rating(p.id).toFixed(1)+' ★ ('+prodReviews(p.id).length+')' : '—'}</td>`))}
+    ${row('Продано', ps.map((p,i)=>`<td class="${topSales[i]&&p.sales?'pos':''}">${p.sales}</td>`))}
+    ${row('В наличии', ps.map(p=>`<td>${p.stock}</td>`))}
+    ${row('Продавец', ps.map(p=>`<td>${esc(p.seller)} <small>ур.${levelOf(p.seller).lvl}</small></td>`))}
+    ${row('', ps.map(p=>`<td>${p.stock>0 && p.seller!==session && !p.auction ? `<button class="btn btn-sm" onclick="closeModal('detModal');startBuy(${p.id})">Купить</button>` : ''}</td>`))}
+  </table></div>`;
+  openModal('detModal');
+}
+function renderRecent(){
+  const box = document.getElementById('recentBox'); const u = me();
+  const ps = u ? (u.seen||[]).map(id=>products.find(p=>p.id===id)).filter(Boolean).slice(0,8) : [];
+  box.innerHTML = ps.length ? `<h4 style="margin-top:14px">👁 Вы недавно смотрели</h4><div class="mini">${ps.map(x=>`
+    <div class="card" onclick="openDetails(${x.id})"><div class="card-img" style="${safeUrl(x.img)?`background-image:url('${esc(x.img)}')`:''}">${safeUrl(x.img)?'':esc(catOf(x.cat).icon)}</div>
+    <div class="card-body"><b>${esc(x.title.slice(0,30))}</b>${x.auction ? `<span class="price" style="font-size:13px">${money(aucCur(x))}</span>` : priceHtml(x,true)}</div></div>`).join('')}</div>` : '';
+}
+function renderTopSellers(){
+  const stat = {};
+  orders.forEach(o => { if(o.status!=='refund'){ stat[o.seller] = (stat[o.seller]||0) + o.qty; } });
+  const top = Object.entries(stat).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  document.getElementById('topSellers').innerHTML = top.length ? `<div class="top-sellers">${top.map(([n,c],i)=>`
+    <div class="ts" onclick="openSeller('${esc(n)}')"><span class="av">${['🥇','🥈','🥉'][i] || esc(n.charAt(0).toUpperCase())}</span><span><b>${esc(n)}</b> <small style="color:var(--muted)">• ${c} продаж</small></span></div>`).join('')}</div>` : '';
+}
+function shareProduct(id){
+  const url = location.href.split('#')[0] + '#p=' + id;
+  const done = () => toast('Ссылка скопирована — отправьте её другу');
+  if(navigator.clipboard) navigator.clipboard.writeText(url).then(done, () => prompt('Скопируйте ссылку:', url));
+  else prompt('Скопируйте ссылку:', url);
+}
+function saveDraft(){ try{ localStorage.setItem('gn2_draft', JSON.stringify({ t:document.getElementById('postTitle').value, x:document.getElementById('postText').value })); }catch(e){} }
+function loadDraft(){ const d = load('gn2_draft', null); if(d){ document.getElementById('postTitle').value = d.t||''; document.getElementById('postText').value = d.x||''; } }
+function togglePin(id){ if(!isAdmin()) return; const p = posts.find(x=>x.id===id); if(!p) return; p.pinned = !p.pinned; persist(); renderFeed(); }
+function broadcast(){
+  const t = document.getElementById('bcInp').value.trim(); if(!t) return;
+  if(!confirm(`Отправить всем игрокам: «${t}»?`)) return;
+  Object.keys(users).forEach(l => { if(l!==session) notify(l, '📢 ' + t, ''); });
+  persist(); document.getElementById('bcInp').value = ''; toast('Рассылка отправлена');
+}
+function doWithdraw(){
+  const u = me(); hideErr('walletErr');
+  const amt = Math.round(parseFloat(document.getElementById('wOutAmt').value));
+  const where = document.getElementById('wOutWhere').value.trim();
+  if(!(amt >= 1)) return showErr('walletErr','Введите сумму');
+  if(u.balance < amt) return showErr('walletErr',`Недостаточно средств! На кошельке ${money(u.balance)}`);
+  if(!where) return showErr('walletErr','Укажите, куда вывести');
+  if(/\b\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}\b/.test(where)) return showErr('walletErr','Не пишите номер карты — укажите ссылку на банку или способ связи');
+  u.balance -= amt; addTx(session, -amt, 'Заявка на вывод (заморожено)');
+  topups.unshift({ id:'tp'+Date.now(), type:'out', user:session, amount:amt, note:where, status:'pending', date:Date.now() });
+  notify(ADMIN_LOGIN, `⇩ ${session} просит вывести ${money(amt)}`, 'admin');
+  persist(); toast('Заявка на вывод отправлена');
+  document.getElementById('wOutAmt').value = ''; document.getElementById('wOutWhere').value = '';
+  renderWallet(); refreshViews();
+}
+function openHelp(){
+  document.getElementById('detBody').innerHTML = `<h3 style="margin-bottom:12px">⌨ Горячие клавиши</h3>
+    ${[['/','Поиск товаров'],['C','Корзина'],['N','Уведомления'],['W','Кошелёк'],['T','Светлая / тёмная тема'],['1 – 5','Вкладки'],['Esc','Закрыть окно'],['?','Эта подсказка']]
+      .map(([k,d])=>`<div class="review" style="display:flex;justify-content:space-between"><span>${d}</span><kbd>${k}</kbd></div>`).join('')}`;
+  openModal('detModal');
+}
+document.addEventListener('keydown', e => {
+  const tag = (e.target.tagName||'').toLowerCase();
+  if(tag==='input' || tag==='textarea' || tag==='select' || e.ctrlKey || e.metaKey || e.altKey) return;
+  const k = e.key.toLowerCase();
+  const tabs = ['market','feed','support','cabinet','admin'];
+  if(k==='/'){ e.preventDefault(); showTab('market'); document.getElementById('fSearch').focus(); }
+  else if(k==='c' || k==='с') openCart();
+  else if(k==='n' || k==='т') me() && openNotifs();
+  else if(k==='w' || k==='ц') openWallet();
+  else if(k==='t' || k==='е') toggleTheme();
+  else if(k==='?' || k===',') openHelp();
+  else if(/^[1-5]$/.test(k)) showTab(tabs[+k-1]);
+});
+
+/* ================== АУКЦИОНЫ ================== */
+function aucCur(p){ const b = p.auction.bids; return b.length ? b[b.length-1].amount : p.price; }
+function aucStep(p){ return Math.max(1, Math.round(aucCur(p)*0.05)); }
+function timeLeft(ms){
+  if(ms <= 0) return 'завершён';
+  const d = Math.floor(ms/864e5), h = Math.floor(ms%864e5/36e5), m = Math.floor(ms%36e5/6e4), sec = Math.floor(ms%6e4/1e3);
+  return d ? `${d}д ${h}ч` : h ? `${h}ч ${m}м` : `${m}м ${sec}с`;
+}
+function aucBox(p){
+  const a = p.auction, b = a.bids, top = b[b.length-1];
+  if(a.done) return `<div class="auc">🔨 Аукцион завершён${a.winner ? ` • победитель <b style="font-size:13px">${esc(a.winner)}</b>` : ' • ставок не было'}</div>`;
+  return `<div class="auc">🔨 ${b.length ? `Ставка <b>${money(top.amount)}</b> от ${esc(top.by)}` : `Старт <b>${money(p.price)}</b>`}
+    <div style="display:flex;justify-content:space-between;margin-top:4px;color:var(--muted)"><span>ставок: ${b.length}</span><span data-ends="${a.ends}">⏱ ${timeLeft(a.ends-Date.now())}</span></div></div>`;
+}
+function placeBid(id){
+  if(needLogin()) return;
+  finalizeAuctions();
+  const p = products.find(x=>x.id===id); if(!p || !p.auction || p.auction.done) return toast('Аукцион уже завершён','error');
+  if(p.seller===session) return toast('Нельзя ставить на свой лот','error');
+  const b = p.auction.bids, top = b[b.length-1];
+  const min = b.length ? aucCur(p) + aucStep(p) : p.price;
+  const v = Math.round(parseFloat(prompt(`Ваша ставка на «${p.title}» (минимум ${min} ₴).\nДеньги замораживаются, если вас перебьют — вернутся.`, min)));
+  if(!v) return;
+  if(v < min) return toast(`Минимальная ставка ${money(min)}`,'error');
+  const u = me(); const mine = top && top.by===session ? top.amount : 0;
+  if(u.balance < v - mine) return toast(`Недостаточно средств: нужно ${money(v-mine)}, на кошельке ${money(u.balance)}`,'error');
+  if(top){
+    users[top.by].balance += top.amount;
+    if(top.by!==session){ addTx(top.by, top.amount, `Ставка на «${p.title}» перебита — возврат`); notify(top.by, `⚠ Вашу ставку на «${p.title}» перебили: ${money(v)}. Деньги вернулись`, 'market'); }
+  }
+  u.balance -= v; addTx(session, -(v - mine), `Ставка на «${p.title}» (заморожено ${money(v)})`);
+  b.push({ by:session, amount:v, date:Date.now() });
+  if(p.auction.ends - Date.now() < 120e3) p.auction.ends = Date.now() + 120e3;   // анти-снайпинг
+  notify(p.seller, `🔨 Новая ставка на «${p.title}»: ${money(v)} от ${session}`, 'market');
+  persist(); toast(`Ставка ${money(v)} принята!`); refreshViews();
+  if(document.getElementById('detModal').style.display==='flex') renderDetails();
+}
+function finalizeAuctions(){
+  let changed = false;
+  products.forEach(p => {
+    const a = p.auction; if(!a || a.done || Date.now() < a.ends) return;
+    a.done = true; changed = true;
+    if(!a.bids.length){ p.stock = 0; notify(p.seller, `🔨 Аукцион «${p.title}» завершён без ставок — можно перезапустить через «Изменить»`, 'cabinet'); return; }
+    const top = a.bids[a.bids.length-1]; a.winner = top.by;
+    const w = users[top.by];
+    addTx(top.by, 0, `Выигран аукцион «${p.title}» за ${money(top.amount)}`);
+    const o = placeOrder(p, 1, top.amount, (w && w.email) || '—', '', 'аукцион', top.by, true);
+    notify(top.by, `🏆 Вы выиграли аукцион «${p.title}» за ${money(top.amount)}! Заказ ${o.id}`, 'cabinet');
+  });
+  if(changed) persist();
+  return changed;
+}
+setInterval(() => {
+  if(finalizeAuctions()) refreshViews();
+  document.querySelectorAll('[data-ends]').forEach(el => el.textContent = '⏱ ' + timeLeft(+el.dataset.ends - Date.now()));
+}, 1000);
+
+/* ================== ПОДПИСКИ И ЖАЛОБЫ ================== */
+function followersOf(name){ return Object.values(users).filter(u=>(u.follows||[]).includes(name)).length; }
+function toggleFollow(name){
+  if(needLogin()) return;
+  const f = me().follows; const i = f.indexOf(name);
+  if(i>=0){ f.splice(i,1); toast(`Вы отписались от ${name}`); }
+  else { f.push(name); notify(name, `👋 ${session} подписался на ваши товары`, 'cabinet'); toast(`Вы подписаны на ${name} — новинки придут в 🔔`); }
+  persist(); openSeller(name);
+}
+function report(type, target){
+  if(needLogin()) return;
+  const reason = prompt('Что не так? (мошенничество, вирус, оскорбления, спам...)');
+  if(!reason || !reason.trim()) return;
+  if(reports.some(x=>x.type===type && String(x.target)===String(target) && x.by===session && x.status==='open')) return toast('Вы уже отправили жалобу','error');
+  reports.unshift({ id:'rp'+Date.now(), type, target, by:session, reason:reason.trim().slice(0,300), status:'open', date:Date.now() });
+  notify(ADMIN_LOGIN, `⚠ Новая жалоба от ${session}`, 'admin');
+  persist(); toast('Жалоба отправлена администрации');
+}
+function resolveReport(id, removeContent){
+  const rp = reports.find(x=>x.id===id); if(!rp) return;
+  if(removeContent){
+    if(rp.type==='product'){ const p = products.find(x=>x.id===rp.target); if(p){ notify(p.seller, `🚫 Ваш товар «${p.title}» удалён по жалобе`, 'cabinet'); products = products.filter(x=>x.id!==rp.target); } }
+    else { const p = posts.find(x=>x.id===rp.target); if(p){ notify(p.author, '🚫 Ваш пост удалён по жалобе', 'feed'); posts = posts.filter(x=>x.id!==rp.target); } }
+  }
+  rp.status = removeContent ? 'removed' : 'rejected';
+  notify(rp.by, removeContent ? '✅ По вашей жалобе контент удалён. Спасибо!' : 'ℹ Ваша жалоба рассмотрена — нарушений не найдено', '');
+  persist(); refreshViews();
+}
+
+/* ================== КОРЗИНА ================== */
+function cart(){ const u = me(); if(!u) return []; u.cart = (u.cart||[]).filter(c=>products.some(p=>p.id===c.pid)); return u.cart; }
+function cartCount(){ return cart().reduce((a,c)=>a+c.qty,0); }
+function addToCart(id){
+  if(needLogin()) return;
+  const p = products.find(x=>x.id===id); if(!p) return;
+  const c = cart(); const it = c.find(x=>x.pid===id);
+  if(it){ if(it.qty >= p.stock) return toast(`В наличии только ${p.stock} шт.`,'error'); it.qty++; }
+  else c.push({ pid:id, qty:1 });
+  persist(); renderUserMenu(); toast('Добавлено в корзину 🛒');
+}
+function cartQty(id, d){
+  const c = cart(); const it = c.find(x=>x.pid===id); if(!it) return;
+  const p = products.find(x=>x.id===id);
+  it.qty = Math.min(p.stock, it.qty + d);
+  if(it.qty <= 0) c.splice(c.indexOf(it),1);
+  persist(); renderCart(); renderUserMenu();
+}
+function openCart(){
+  if(needLogin()) return;
+  document.getElementById('cartEmail').value = me().email || '';
+  hideErr('cartErr'); renderCart(); openModal('cartModal');
+}
+function renderCart(){
+  const c = cart();
+  document.getElementById('cartCheckout').classList.toggle('hidden', !c.length);
+  document.getElementById('cartList').innerHTML = c.length ? c.map(it => {
+    const p = products.find(x=>x.id===it.pid);
+    const bad = p.stock < it.qty ? `<small class="neg">в наличии только ${p.stock}</small>` : '';
+    return `<div class="cart-row"><div class="t">${esc(p.title)}<small>${money(priceOf(p))} × ${it.qty} = ${money(priceOf(p)*it.qty)} • ${esc(p.seller)}</small>${bad}</div>
+      <div class="qty"><button onclick="cartQty(${p.id},-1)">−</button><span>${it.qty}</span><button onclick="cartQty(${p.id},1)">+</button></div></div>`;
+  }).join('') : '<div class="empty">Корзина пуста</div>';
+  const total = c.reduce((a,it)=>a + priceOf(products.find(x=>x.id===it.pid))*it.qty, 0);
+  const after = me().balance - total;
+  document.getElementById('cartSummary').innerHTML = `
+    <div><span>Товаров</span><span>${cartCount()} шт.</span></div>
+    <div><span>Итого</span><span>${money(total)}</span></div>
+    <div><span>На кошельке</span><span>${money(me().balance)}</span></div>
+    <div class="total"><span>Останется</span><span class="${after<0?'neg':'pos'}">${money(after)}</span></div>
+    ${after<0 ? `<div class="neg" style="font-size:13px">Не хватает ${money(-after)}. <a class="link" onclick="closeModal('cartModal');openWallet()">Пополнить</a></div>` : ''}`;
+  document.getElementById('cartBtn').textContent = `Оплатить ${money(total)}`;
+  document.getElementById('cartBtn').disabled = after < 0;
+}
+function checkoutCart(){
+  const u = me(), c = cart(); hideErr('cartErr');
+  const email = document.getElementById('cartEmail').value.trim(), nick = document.getElementById('cartNick').value.trim();
+  if(!c.length) return;
+  if(!validEmail(email)) return showErr('cartErr','Введите правильный Email — на него придут товары');
+  for(const it of c){
+    const p = products.find(x=>x.id===it.pid);
+    if(p.seller === session) return showErr('cartErr',`«${p.title}» — это ваш товар, уберите его`);
+    if(it.qty > p.stock) return showErr('cartErr',`«${p.title}»: в наличии только ${p.stock} шт.`);
+  }
+  const total = c.reduce((a,it)=>a + priceOf(products.find(x=>x.id===it.pid))*it.qty, 0);
+  if(u.balance < total) return showErr('cartErr',`Недостаточно средств! Нужно ${money(total)}, на кошельке ${money(u.balance)}`);
+  const made = c.map(it => { const p = products.find(x=>x.id===it.pid); return placeOrder(p, it.qty, priceOf(p)*it.qty, email, nick, ''); });
+  made.forEach(o => { const p = products.find(x=>x.id===o.productId); if(p.kind==='file' && p.fileData) downloadProduct(p); });
+  u.cart = []; persist(); closeModal('cartModal');
+  document.getElementById('receiptHead').textContent = `✔ Оплачено ${made.length} заказ(ов)`;
+  document.getElementById('receiptText').textContent = made.map(o=>`${o.id} • ${o.title} × ${o.qty} — ${money(o.total)}\n${o.delivery}`).join('\n\n')
+    + `\n\nСписано: ${money(total)}\nОстаток: ${money(u.balance)}\nEmail: ${email}`;
+  document.getElementById('receiptDl').innerHTML = '';
+  openModal('receiptModal'); refreshViews();
+}
+
+/* ================== ЧАТ ПО ЗАКАЗУ ================== */
+let chatId = null;
+function chatNew(o){ return (o.chat||[]).some(m => m.from!==session && !(m.seen||[]).includes(session)); }
+function openChat(id){
+  const o = orders.find(x=>x.id===id); if(!o) return;
+  if(o.buyer!==session && o.seller!==session && !isAdmin()) return;
+  chatId = id; o.chat = o.chat || [];
+  o.chat.forEach(m => { m.seen = m.seen || []; if(!m.seen.includes(session)) m.seen.push(session); });
+  persist();
+  document.getElementById('chatHead').textContent = `💬 Заказ ${o.id}`;
+  document.getElementById('chatSub').textContent = `${o.title} × ${o.qty} • покупатель ${o.buyer} • продавец ${o.seller}`;
+  renderChat(); openModal('chatModal');
+  if(curTab==='cabinet') renderCabinet();
+}
+function renderChat(){
+  const o = orders.find(x=>x.id===chatId); const box = document.getElementById('chatBox');
+  box.innerHTML = o.chat.length ? o.chat.map(m=>`<div class="msg ${m.from===session?'msg-admin':'msg-user'}"><small>${esc(m.from)} • ${date(m.date)}</small>${esc(m.text)}</div>`).join('')
+    : '<div class="empty" style="padding:16px">Напишите продавцу или покупателю — например, ник в игре или адрес доставки</div>';
+  box.scrollTop = box.scrollHeight;
+}
+function sendChat(){
+  const o = orders.find(x=>x.id===chatId); const inp = document.getElementById('chatInp'); const text = inp.value.trim();
+  if(!o || !text) return;
+  o.chat.push({ from:session, text, date:Date.now(), seen:[session] });
+  const to = session===o.buyer ? o.seller : o.buyer;
+  if(to !== session) notify(to, `💬 Сообщение по заказу ${o.id} от ${session}: «${text.slice(0,40)}»`, 'cabinet');
+  inp.value = ''; persist(); renderChat();
+}
+function favWatchers(p){
+  Object.entries(users).forEach(([l,u]) => { if(l!==p.seller && (u.favs||[]).includes(p.id)) notify(l, `🔥 Скидка −${p.sale}% на «${p.title}» из вашего избранного`, 'market'); });
+}
+
+/* ================== УВЕДОМЛЕНИЯ И ИЗБРАННОЕ ================== */
+function notify(to, text, tab=''){
+  if(!users[to]) return;
+  notifs.unshift({ id:'n'+Date.now()+Math.random().toString(36).slice(2,6), to, text, tab, date:Date.now(), read:false });
+  if(notifs.length > 300) notifs.length = 300;
+}
+function unread(){ return notifs.filter(n=>n.to===session && !n.read).length; }
+function openNotifs(){
+  const mine = notifs.filter(n=>n.to===session).slice(0,50);
+  document.getElementById('notifList').innerHTML = mine.length ? mine.map(n=>`
+    <div class="notif ${n.read?'':'new'}" onclick="goNotif('${n.tab}')">${esc(n.text)}<small>${date(n.date)}</small></div>`).join('')
+    : '<div class="empty">Уведомлений нет</div>';
+  openModal('notifModal');
+  notifs.forEach(n => { if(n.to===session) n.read = true; });
+  persist(); renderUserMenu();
+}
+function goNotif(tab){ closeModal('notifModal'); if(tab) showTab(tab); }
+function clearNotifs(){ notifs = notifs.filter(n=>n.to!==session); persist(); closeModal('notifModal'); renderUserMenu(); }
+function toggleFav(id){
+  if(needLogin()) return;
+  const f = me().favs;
+  const i = f.indexOf(id);
+  if(i>=0) f.splice(i,1); else { f.push(id); toast('Добавлено в избранное ❤'); }
+  persist(); renderProducts();
+}
+
+/* ================== АДМИНКА ================== */
+const ADMIN_TABS = { prods:'Товары', orders:'Заказы', users:'Пользователи', tickets:'Поддержка', topups:'Пополнения/вывод', posts:'Посты', reports:'Жалобы', promos:'Промокоды', cats:'Категории', settings:'Настройки', backup:'Резервная копия', online:'🌐 Онлайн' };
+let aTab = 'prods';
+function adminTab(t){ aTab = t; renderAdmin(); }
+function renderAdmin(){
+  if(!isAdmin()) return;
+  const turnover = orders.filter(o=>o.status!=='refund').reduce((a,o)=>a+o.total,0);
+  const openT = tickets.filter(t=>t.status==='open').length;
+  const pendT = topups.filter(t=>t.status==='pending').length;
+  const repT = reports.filter(t=>t.status==='open').length;
+  document.getElementById('adminStats').innerHTML = `
+    <div class="stat"><small>Пользователей</small><div>${Object.keys(users).length}</div></div>
+    <div class="stat"><small>Товаров / Постов</small><div>${products.length} / ${posts.length}</div></div>
+    <div class="stat"><small>Заказов</small><div>${orders.length}</div></div>
+    <div class="stat"><small>Оборот</small><div>${money(turnover)}</div></div>
+    <div class="stat"><small>Комиссия площадки</small><div class="pos">${money(settings.earned)}</div></div>
+    <div class="stat"><small>Новые тикеты</small><div class="${openT?'neg':''}">${openT}</div></div>`;
+  document.getElementById('adminTabs').innerHTML = Object.entries(ADMIN_TABS).map(([k,n]) =>
+    `<button class="btn btn-sm ${k===aTab?'':'btn-sec'}" onclick="adminTab('${k}')">${n}${k==='tickets'&&openT?' ('+openT+')':''}${k==='topups'&&pendT?' ('+pendT+')':''}${k==='reports'&&repT?' ('+repT+')':''}</button>`).join('');
+
+  const body = document.getElementById('adminBody');
+  const userList = Object.keys(users);
+  if(aTab==='prods'){
+    body.innerHTML = products.length ? `<div class="table-wrap"><table>
+      <tr><th>Товар</th><th>Категория</th><th>Продавец</th><th>Цена</th><th>Наличие</th><th>Продано</th><th></th></tr>
+      ${products.map(p=>`<tr><td>${esc(p.title)}</td><td>${esc(catOf(p.cat).name)}</td><td>${esc(p.seller)}</td><td>${p.price?money(p.price):'Free'}</td><td>${p.stock}</td><td>${p.sales}</td>
+        <td style="white-space:nowrap"><button class="btn btn-sec btn-sm" onclick="openPublish(${p.id})">Изменить</button>
+        <button class="btn btn-sm" onclick="deleteProd(${p.id})">Удалить</button></td></tr>`).join('')}</table></div>` : '<div class="empty">Товаров нет</div>';
+  } else if(aTab==='orders'){
+    body.innerHTML = orders.length ? `<div class="table-wrap"><table>
+      <tr><th>Заказ</th><th>Товар</th><th>Покупатель</th><th>Продавец</th><th>Сумма</th><th>Статус</th><th></th></tr>
+      ${orders.map(o=>`<tr><td>${o.id}</td><td>${esc(o.title)} × ${o.qty}</td><td>${esc(o.buyer)}<br><small style="color:var(--muted)">${esc(o.buyerEmail)}</small></td>
+        <td>${esc(o.seller)}</td><td>${money(o.total)}</td><td>${statusBadge(o.status)}</td>
+        <td style="white-space:nowrap"><button class="btn btn-sec btn-sm" onclick="showReceipt('${o.id}')">Чек</button>
+        <button class="btn btn-sec btn-sm" onclick="openChat('${o.id}')">💬 ${(o.chat||[]).length}</button>
+        ${o.status!=='refund' ? `<button class="btn btn-sm" onclick="refund('${o.id}')">Возврат</button>`:''}</td></tr>`).join('')}</table></div>`
+      : '<div class="empty">Заказов нет</div>';
+  } else if(aTab==='users'){
+    body.innerHTML = `<div class="table-wrap"><table>
+      <tr><th>Логин</th><th>Email</th><th>Роль</th><th>Баланс</th><th>Статус</th><th></th></tr>
+      ${userList.map((l,i)=>{ const u = users[l]; return `<tr>
+        <td>${esc(l)}${roleBadge(l)}${u.hash===null?' <small style="color:var(--muted)">(старый ник)</small>':''}</td><td>${esc(u.email||'—')}</td><td>${u.role}</td><td>${money(u.balance)}</td>
+        <td>${u.banned ? '<span class="status st-ref">БАН</span>' : '<span class="status st-sent">АКТИВЕН</span>'}</td>
+        <td style="white-space:nowrap">
+          <button class="btn btn-sec btn-sm" onclick="adminBalance(${i})">± Баланс</button>
+          ${l!==ADMIN_LOGIN ? `<button class="btn btn-sec btn-sm" onclick="toggleVerify(${i})">${u.verified?'Снять ✔':'Verified ✔'}</button>
+          <button class="btn btn-sm" onclick="toggleBan(${i})">${u.banned?'Разбанить':'Бан'}</button>`:''}
+        </td></tr>`; }).join('')}</table></div>`;
+  } else if(aTab==='tickets'){
+    body.innerHTML = tickets.length ? tickets.map(t=>ticketCard(t,true)).join('') : '<div class="empty">Обращений нет</div>';
+  } else if(aTab==='topups'){
+    const unused = codes.filter(c=>!c.used);
+    body.innerHTML = `
+      <h4>🎟 Коды пополнения (как карты Steam)</h4>
+      <p style="color:var(--muted);font-size:12px;margin:4px 0 8px">Создайте коды и продавайте/дарите их сами — игрок вводит код в кошельке и сразу получает деньги.</p>
+      <div class="row" style="flex-wrap:wrap">
+        <select id="cgAmt" class="form-control" style="min-width:120px">${[50,100,250,500,1000,2500,5000].map(v=>`<option value="${v}">${money(v)}</option>`).join('')}</select>
+        <input id="cgCnt" type="number" min="1" max="50" value="5" class="form-control" style="min-width:90px" placeholder="Сколько">
+        <button class="btn" style="flex:0 0 auto" onclick="genCodes()">Создать коды</button>
+        ${unused.length ? `<button class="btn btn-sec" style="flex:0 0 auto" onclick="copyCodes()">Скопировать свободные (${unused.length})</button>` : ''}
+      </div>
+      ${codes.length ? `<div class="table-wrap" style="max-height:240px;overflow-y:auto"><table><tr><th>Код</th><th>Сумма</th><th>Статус</th><th></th></tr>
+        ${codes.map(c=>`<tr><td style="font-family:Consolas,monospace">${esc(c.code)}</td><td>${money(c.amount)}</td>
+        <td>${c.used ? `<span class="status st-sent">ИСПОЛЬЗОВАН</span> <small>${esc(c.used)}</small>` : '<span class="status st-paid">СВОБОДЕН</span>'}</td>
+        <td>${c.used ? '' : `<button class="btn btn-sec btn-sm" onclick="delCode('${esc(c.code)}')">Удалить</button>`}</td></tr>`).join('')}</table></div>` : ''}
+      <h4 style="margin-top:18px">🧾 Заявки на пополнение и вывод</h4>
+      <p style="color:var(--muted);font-size:12px;margin:4px 0 0">Сверяйте код из заявки (GN-XXXXXX) с комментарием платежа в вашем банке, потом жмите «Зачислить».</p>` + (topups.length ? `<div class="table-wrap"><table>
+      <tr><th>Игрок</th><th>Сумма</th><th>Комментарий</th><th>Дата</th><th>Статус</th><th></th></tr>
+      ${topups.map(t=>`<tr><td>${esc(t.user)}</td><td><b class="${t.type==='out'?'neg':'pos'}">${t.type==='out'?'⇩ Вывод ':'＋ '}${money(t.amount)}</b></td><td>${t.code ? `<b style="font-family:Consolas,monospace;color:var(--red)">${esc(t.code)}</b>` : esc(t.note||'—')}</td><td>${date(t.date)}</td><td>${topStatus[t.status]}</td>
+        <td style="white-space:nowrap">${t.status==='pending' ? `<button class="btn btn-sm" onclick="decideTopup('${t.id}',true)">${t.type==='out'?'Выплачено':'Зачислить'}</button>
+        <button class="btn btn-sec btn-sm" onclick="decideTopup('${t.id}',false)">Отклонить</button>`:''}</td></tr>`).join('')}</table></div>`
+      : '<div class="empty">Заявок на пополнение и вывод нет</div>');
+  } else if(aTab==='reports'){
+    body.innerHTML = reports.length ? reports.map(rp => {
+      const p = rp.type==='product' ? products.find(x=>x.id===rp.target) : posts.find(x=>x.id===rp.target);
+      const what = !p ? '<i style="color:var(--muted)">уже удалено</i>' : rp.type==='product'
+        ? `товар <span class="link" onclick="openDetails(${p.id})">«${esc(p.title)}»</span> от ${esc(p.seller)}` : `пост ${esc(p.author)}: «${esc((p.title||p.text).slice(0,60))}»`;
+      return `<div class="review"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><span><b>${esc(rp.by)}</b> → ${what}</span>
+        <span>${rp.status==='open'?'<span class="status st-paid">НОВАЯ</span>':rp.status==='removed'?'<span class="status st-ref">УДАЛЕНО</span>':'<span class="status st-sent">ОТКЛОНЕНА</span>'}</span></div>
+        <div style="margin:6px 0">${esc(rp.reason)} <small style="color:var(--muted)">• ${date(rp.date)}</small></div>
+        ${rp.status==='open' ? `${p ? `<button class="btn btn-sm" onclick="resolveReport('${rp.id}',true)">Удалить контент</button>` : ''} <button class="btn btn-sec btn-sm" onclick="resolveReport('${rp.id}',false)">Отклонить</button>` : ''}</div>`;
+    }).join('') : '<div class="empty">Жалоб нет</div>';
+  } else if(aTab==='posts'){
+    body.innerHTML = posts.length ? `<div class="table-wrap"><table>
+      <tr><th>Автор</th><th>Пост</th><th>❤</th><th>💬</th><th>Дата</th><th></th></tr>
+      ${posts.map(p=>`<tr><td>${esc(p.author)}</td><td>${esc((p.title||p.text).slice(0,60))}</td><td>${p.likes.length}</td><td>${p.comments.length}</td><td>${date(p.date)}</td>
+        <td><button class="btn btn-sm" onclick="deletePost('${p.id}')">Удалить</button></td></tr>`).join('')}</table></div>` : '<div class="empty">Постов нет</div>';
+  } else if(aTab==='promos'){
+    body.innerHTML = `
+      <div class="row" style="flex-wrap:wrap">
+        <input id="prCode" class="form-control" placeholder="КОД (напр. GNERTI2026)" style="min-width:150px">
+        <select id="prKind" class="form-control" style="min-width:150px"><option value="balance">Пополнение (₴)</option><option value="discount">Скидка (%)</option></select>
+        <input id="prVal" type="number" min="1" class="form-control" placeholder="Сумма / %" style="min-width:100px">
+        <input id="prLimit" type="number" min="0" class="form-control" placeholder="Лимит (0 = ∞)" style="min-width:100px">
+        <button class="btn" style="flex:0 0 auto" onclick="createPromo()">Создать</button>
+      </div>
+      <div class="table-wrap"><table><tr><th>Код</th><th>Тип</th><th>Значение</th><th>Использовано</th><th></th></tr>
+      ${promos.map((p,i)=>`<tr><td><b>${esc(p.code)}</b></td><td>${p.kind==='balance'?'Пополнение':'Скидка'}</td><td>${p.kind==='balance'?money(p.value):p.value+'%'}</td>
+        <td>${p.used.length}${p.limit?' / '+p.limit:''}</td><td><button class="btn btn-sm" onclick="deletePromo(${i})">Удалить</button></td></tr>`).join('')}</table></div>`;
+  } else if(aTab==='cats'){
+    body.innerHTML = `
+      <div class="row" style="flex-wrap:wrap">
+        <input id="catName" class="form-control" placeholder="Название категории" style="min-width:160px">
+        <input id="catIcon" class="form-control" placeholder="Иконка (⚡)" maxlength="4" style="max-width:120px">
+        <button class="btn" style="flex:0 0 auto" onclick="addCategory()">Добавить</button>
+      </div>
+      <div style="margin-top:10px">${cats.map((c,i)=>`<span class="chip">${esc(c.icon)} ${esc(c.name)} <small style="color:var(--muted)">(${products.filter(p=>p.cat===c.id).length})</small>
+        ${cats.length>1 ? `<span class="x" onclick="deleteCategory(${i})">✕</span>`:''}</span>`).join('')}</div>`;
+  } else if(aTab==='online'){
+    body.innerHTML = `
+      <div class="review" style="margin-bottom:12px">Статус: <b id="syncDotAdmin">${document.getElementById('syncDot').innerHTML}</b>${sync.err ? `<div class="neg" style="font-size:12px;margin-top:4px">${esc(sync.err)}</div>` : ''}</div>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6">Чтобы все игроки видели одни и те же товары, аккаунты и заказы с любых компьютеров:</p>
+      <ol style="color:var(--muted);font-size:13px;line-height:1.8;margin:6px 0 12px 20px">
+        <li>Откройте ваш проект на <b>supabase.com</b> → <b>SQL Editor</b> → вставьте скрипт ниже → <b>Run</b>.</li>
+        <li><b>Project Settings → API</b>: скопируйте <b>Project URL</b> и ключ <b>anon public</b>, вставьте сюда и нажмите «Подключить».</li>
+        <li>Чтобы онлайн работал у всех — откройте этот .html в Блокноте и впишите те же данные в строки <kbd>SB_URL</kbd> и <kbd>SB_KEY</kbd> в начале скрипта, затем выложите файл (например, на GitHub Pages).</li>
+      </ol>
+      <div class="form-group"><label>SQL-скрипт</label><textarea class="form-control" rows="8" readonly style="font-family:Consolas,monospace;font-size:12px">${esc(SB_SQL)}</textarea>
+        <button class="btn btn-sec btn-sm" style="margin-top:6px" onclick="navigator.clipboard&&navigator.clipboard.writeText(SB_SQL).then(()=>toast('SQL скопирован'))">Скопировать SQL</button></div>
+      <div class="form-group"><label>Project URL</label><input id="sbUrl" class="form-control" placeholder="https://xxxx.supabase.co" value="${esc(SB.url)}"></div>
+      <div class="form-group"><label>anon public key</label><input id="sbKey" class="form-control" placeholder="eyJhbGciOi..." value="${esc(SB.key)}"></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" onclick="sbConnect()">Подключить</button>
+        ${sync.on ? `<button class="btn btn-sec" onclick="syncTick().then(()=>toast('Синхронизировано'))">Синхронизировать сейчас</button><button class="btn btn-sec" onclick="sbDisconnect()">Отключить</button>` : ''}</div>
+      <p class="neg" style="font-size:12px;margin-top:12px">⚠ Ключ anon виден в коде страницы, поэтому знающий человек может менять данные в таблице напрямую. Для игровой валюты и демо это нормально; настоящие деньги так хранить нельзя.</p>`;
+  } else if(aTab==='backup'){
+    body.innerHTML = `
+      <p style="color:var(--muted);font-size:13px;margin-bottom:12px">Все данные сайта хранятся в этом браузере. Скачайте копию, чтобы ничего не потерять или перенести магазин на другой компьютер.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn" onclick="exportData()">⬇ Скачать копию</button>
+        <label class="btn btn-sec" style="display:inline-block">⬆ Загрузить копию<input type="file" accept=".json" class="hidden" onchange="importData(this)"></label>
+      </div>`;
+  } else if(aTab==='settings'){
+    body.innerHTML = `
+      <div class="form-group"><label>Системный баннер (видят все)</label>
+        <div class="row"><input id="bannerInp" class="form-control" style="flex:3" value="${esc(settings.banner)}" placeholder="Объявление для всех...">
+        <button class="btn" style="flex:0 0 auto" onclick="saveBanner()">Сохранить</button>
+        <button class="btn btn-sec" style="flex:0 0 auto" onclick="document.getElementById('bannerInp').value='';saveBanner()">Сбросить</button></div></div>
+      <div class="form-group"><label>Комиссия площадки (%)</label>
+        <div class="row"><input id="feeInp" type="number" min="0" max="50" class="form-control" style="flex:3" value="${settings.fee}">
+        <button class="btn" style="flex:0 0 auto" onclick="saveFee()">Сохранить</button></div></div>
+      <div class="form-group"><label>🐈‍⬛ Monobank Pay — адрес серверной функции</label>
+        <input id="monoFnInp" class="form-control" value="${esc(settings.monoFn||'')}" placeholder="https://xxxx.supabase.co/functions/v1/mono-pay">
+        <small style="color:var(--muted)">Появится после установки функции mono-pay в Supabase. Пусто = способ оплаты скрыт.</small></div>
+      <div class="form-group"><label>Ссылка на оплату (Monobank-банка, Privat24, LiqPay-кнопка и т.п.)</label>
+        <input id="payLinkInp" class="form-control" value="${esc(settings.payLink||'')}" placeholder="https://send.monobank.ua/jar/..."></div>
+      <div class="form-group"><label>Дополнительная инструкция для игроков</label>
+        <textarea id="payInfoInp" class="form-control" rows="3">${esc(settings.payInfo)}</textarea></div>
+      <div class="row" style="flex-wrap:wrap">
+        <div class="form-group"><label>Демо-пополнение</label><select id="demoInp" class="form-control"><option value="1" ${settings.demoTopup?'selected':''}>Включено</option><option value="0" ${settings.demoTopup?'':'selected'}>Выключено</option></select></div>
+        <div class="form-group"><label>Лимит демо в день (₴)</label><input id="demoLimInp" type="number" min="0" class="form-control" value="${settings.demoLimit}"></div>
+      </div>
+      <button class="btn" onclick="saveWalletSettings()">Сохранить настройки кошелька</button>
+      <div class="form-group" style="margin-top:18px"><label>📢 Рассылка — уведомление всем игрокам</label>
+        <div class="row"><input id="bcInp" class="form-control" maxlength="200" style="flex:3" placeholder="Например: Скидки 20% на всё до воскресенья!">
+        <button class="btn" style="flex:0 0 auto" onclick="broadcast()">Отправить всем</button></div></div>`;
+  }
+}
+function adminBalance(i){
+  const l = Object.keys(users)[i]; if(!l) return;
+  const v = parseInt(prompt(`Изменить баланс ${l} (например 500 или -200):`, '500'));
+  if(!v) return;
+  users[l].balance += v; addTx(l, v, 'Изменено администратором');
+  persist(); toast(`Баланс ${l}: ${money(users[l].balance)}`); refreshViews();
+}
+function toggleBan(i){ const l = Object.keys(users)[i]; if(!l || l===ADMIN_LOGIN) return; users[l].banned = !users[l].banned; persist(); refreshViews(); }
+function toggleVerify(i){ const l = Object.keys(users)[i]; if(!l || l===ADMIN_LOGIN) return; users[l].verified = !users[l].verified; persist(); refreshViews(); }
+function createPromo(){
+  const code = document.getElementById('prCode').value.trim().toUpperCase();
+  const kind = document.getElementById('prKind').value;
+  const value = parseInt(document.getElementById('prVal').value);
+  const limit = parseInt(document.getElementById('prLimit').value) || 0;
+  if(!/^[A-Z0-9_-]{3,20}$/.test(code)) return toast('Код: 3–20 символов, латиница и цифры','error');
+  if(promos.some(p=>p.code===code)) return toast('Такой код уже есть','error');
+  if(!(value>0) || (kind==='discount' && value>100)) return toast('Неверное значение','error');
+  promos.push({ code, kind, value, limit, used:[] }); persist(); toast('Промокод создан!'); renderAdmin();
+}
+function deletePromo(i){ promos.splice(i,1); persist(); renderAdmin(); }
+function addCategory(){
+  const name = document.getElementById('catName').value.trim(), icon = document.getElementById('catIcon').value.trim() || '📦';
+  if(!name) return toast('Введите название','error');
+  cats.push({ id:'cat'+Date.now(), name, icon }); persist(); fillCategorySelects(); renderAdmin();
+}
+function deleteCategory(i){
+  const c = cats[i]; if(!c || cats.length<=1) return;
+  if(!confirm(`Удалить категорию «${c.name}»? Её товары перейдут в «${cats.find(x=>x.id!==c.id).name}».`)) return;
+  cats.splice(i,1);
+  products.forEach(p => { if(p.cat===c.id) p.cat = cats[0].id; });
+  persist(); fillCategorySelects(); renderAdmin();
+}
+function decideTopup(id, ok){
+  const t = topups.find(x=>x.id===id); if(!t || t.status!=='pending') return;
+  t.status = ok ? 'approved' : 'rejected';
+  if(t.type==='out'){
+    if(!ok && users[t.user]){ users[t.user].balance += t.amount; addTx(t.user, t.amount, 'Вывод отклонён — возврат'); }
+    notify(t.user, ok ? `✅ Вывод ${money(t.amount)} выплачен` : `❌ Вывод ${money(t.amount)} отклонён, деньги вернулись на кошелёк`, 'cabinet');
+    persist(); toast(ok ? 'Вывод отмечен как выплаченный' : 'Вывод отклонён'); refreshViews(); return;
+  }
+  if(ok && users[t.user]){ users[t.user].balance += t.amount; addTx(t.user, t.amount, 'Пополнение (подтверждено админом)'); }
+  notify(t.user, ok ? `✅ Пополнение ${money(t.amount)} зачислено` : `❌ Заявка на пополнение ${money(t.amount)} отклонена`, 'cabinet');
+  persist(); toast(ok ? `Зачислено ${money(t.amount)} → ${t.user}` : 'Заявка отклонена'); refreshViews();
+}
+function genCodes(){
+  const amt = +document.getElementById('cgAmt').value, n = Math.min(50, Math.max(1, parseInt(document.getElementById('cgCnt').value)||1));
+  const S = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789', part = () => Array.from({length:4},()=>S[crypto.getRandomValues(new Uint32Array(1))[0] % S.length]).join('');
+  for(let i=0;i<n;i++){ let c; do { c = `GNRT-${part()}-${part()}-${part()}`; } while(codes.some(x=>x.code===c)); codes.unshift({ code:c, amount:amt, used:null, date:Date.now() }); }
+  persist(); toast(`Создано кодов: ${n} × ${money(amt)}`); renderAdmin();
+}
+function copyCodes(){
+  const t = codes.filter(c=>!c.used).map(c=>`${c.code} — ${money(c.amount)}`).join('\n');
+  if(navigator.clipboard) navigator.clipboard.writeText(t).then(()=>toast('Коды скопированы')); else prompt('Коды:', t);
+}
+function delCode(code){ codes = codes.filter(c=>c.code!==code); persist(); renderAdmin(); }
+function saveWalletSettings(){
+  settings.payInfo = document.getElementById('payInfoInp').value.trim();
+  const pl = document.getElementById('payLinkInp').value.trim();
+  if(pl && !/^https:\/\//i.test(pl)) return toast('Ссылка на оплату должна начинаться с https://','error');
+  settings.payLink = pl;
+  const mf = document.getElementById('monoFnInp').value.trim();
+  if(mf && !/^https:\/\/.+\/functions\/v1\/.+/i.test(mf)) return toast('Адрес функции вида https://xxxx.supabase.co/functions/v1/mono-pay','error');
+  settings.monoFn = mf;
+  settings.demoTopup = document.getElementById('demoInp').value === '1';
+  settings.demoLimit = Math.max(0, parseInt(document.getElementById('demoLimInp').value) || 0);
+  persist(); toast('Настройки кошелька сохранены');
+}
+function saveBanner(){ settings.banner = document.getElementById('bannerInp').value.trim(); persist(); renderBanner(); toast('Баннер обновлён'); }
+function saveFee(){
+  const v = parseFloat(document.getElementById('feeInp').value);
+  if(!(v>=0 && v<=50)) return toast('Комиссия от 0 до 50%','error');
+  settings.fee = v; persist(); toast('Комиссия сохранена'); renderAdmin();
+}
+
+/* ================== СТАРТ ================== */
+document.addEventListener('keydown', e => { if(e.key==='Escape') document.querySelectorAll('.modal-bg').forEach(m=>m.style.display='none'); });
+document.querySelectorAll('.modal-bg').forEach(m => m.addEventListener('mousedown', e => { if(e.target===m) m.style.display='none'; }));
+if(session && (!users[session] || users[session].banned || users[session].hash===null)) { session = null; save('gn2_session', null); }
+persist();
+recalcBalances(); persist();
+fillCategorySelects();
+loadDraft();
+showTab('market');
+(function(){ const m = location.hash.match(/p=(\d+)/); if(m && products.some(p=>p.id===+m[1])) openDetails(+m[1]); })();
+</script>
+<footer>© 2026 <b>GNERTI</b> HUB • Маркетплейс и сообщество GNERTI • <span class="link" onclick="showTab('support')">Поддержка</span> • <span class="link" onclick="openHelp()">Горячие клавиши (?)</span> • <span id="syncDot"></span></footer>
+<script>renderSyncDot(); syncStart();</script>
+</body>
+</html>
